@@ -1,4 +1,4 @@
-package com.ua.cabare;
+package com.ua.cabare.models;
 
 import javax.persistence.*;
 
