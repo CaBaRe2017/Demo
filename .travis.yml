@@ -6,7 +6,7 @@ dist: trusty
 
 before_install: chmod +x gradlew
 
- install: true
+install: true
 
 sckript: script: ./gradlew build
 
