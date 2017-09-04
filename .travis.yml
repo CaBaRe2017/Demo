@@ -1,0 +1,14 @@
+language: java
+jdk: oraclejdk8
+
+sudo: true
+dist: trusty
+
+
+before_install: chmod +x gradlew
+
+install: true
+
+sckript: ./mvnw test -B
+
+build: ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
