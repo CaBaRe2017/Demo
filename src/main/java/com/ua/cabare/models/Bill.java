@@ -1,6 +1,5 @@
 package com.ua.cabare.models;
 
-
 import java.util.List;
 
 public class Bill {

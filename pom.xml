@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.springframework</groupId>
-    <artifactId>cabareWithData</artifactId>
-    <packaging>war</packaging>
-	<version>0.1.0</version>
+	<groupId>com.ua.cabare</groupId>
+	<artifactId>cabare</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -19,12 +20,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -45,16 +40,36 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<checkstyle.config.location>config/checkstyle/checkstyle.xml</checkstyle.config.location>
 	</properties>
 
 	<build>
-        <finalName>cabare</finalName>
+		<finalName>cabare</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-        </plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.17</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>8.0</version>
+					</dependency>
+					<dependency>
+						<groupId>com.thomasjensen.checkstyle.addons</groupId>
+						<artifactId>checkstyle-addons</artifactId>
+						<version>5.1.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+		</plugins>
 	</build>
 
 </project>
