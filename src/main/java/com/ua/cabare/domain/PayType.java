@@ -1,4 +1,4 @@
-package com.ua.cabare.models;
+package com.ua.cabare.domain;
 
 public enum PayType {
   CASH,

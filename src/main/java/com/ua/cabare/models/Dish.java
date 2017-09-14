@@ -1,21 +1,14 @@
 package com.ua.cabare.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.ua.cabare.domain.Money;
 
-@Entity
-@Table(name = "menu")
+import java.util.List;
+
 public class Dish {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String name;
-
-  private Double price;
+  private List<RecipeIngredient> recipeIngredients;
 
   public Long getId() {
     return id;
@@ -33,14 +26,22 @@ public class Dish {
     this.name = name;
   }
 
-  public Double getPrice() {
-    return price;
+  public List<RecipeIngredient> getRecipeIngredients() {
+    return recipeIngredients;
   }
 
-  public void setPrice(Double price) {
-    this.price = price;
+  public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
+    this.recipeIngredients = recipeIngredients;
   }
 
+  public Money getDishCost() {
+    Money cost = new Money(0);
+    recipeIngredients
+        .stream()
+        .map(recipeIngredient -> recipeIngredient.getCost())
+        .forEach(c -> cost.add(c));
+    return cost;
+  }
 }
 
 

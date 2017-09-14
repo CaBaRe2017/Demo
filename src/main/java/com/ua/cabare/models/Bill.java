@@ -1,17 +1,30 @@
 package com.ua.cabare.models;
 
+import com.ua.cabare.domain.PayStatus;
+import com.ua.cabare.domain.PayType;
+import com.ua.cabare.domain.SaleType;
+
 import java.util.List;
 
 public class Bill {
 
   private long id;
-  private Waiter waiter;
-  private List<Dish> dishes;
+  private Stuff stuff;
+  private List<OrderItem> orderItems;
   private int tableCount;
-  private SaleType saleType;
   private Discount discount;
+
+  private SaleType saleType;
   private PayType payType;
   private PayStatus payStatus;
+
+  public List<OrderItem> getOrderItems() {
+    return orderItems;
+  }
+
+  public void setOrderItems(List<OrderItem> orderItems) {
+    this.orderItems = orderItems;
+  }
 
   public long getId() {
     return id;
@@ -19,14 +32,6 @@ public class Bill {
 
   public void setId(long id) {
     this.id = id;
-  }
-
-  public List<Dish> getDishes() {
-    return dishes;
-  }
-
-  public void setDishes(List<Dish> dishes) {
-    this.dishes = dishes;
   }
 
   public SaleType getSaleType() {
@@ -37,12 +42,12 @@ public class Bill {
     this.saleType = saleType;
   }
 
-  public Waiter getWaiter() {
-    return waiter;
+  public Stuff getStuff() {
+    return stuff;
   }
 
-  public void setWaiter(Waiter waiter) {
-    this.waiter = waiter;
+  public void setStuff(Stuff stuff) {
+    this.stuff = stuff;
   }
 
   public int getTableCount() {
