@@ -6,7 +6,15 @@ sudo: true
 
 dist: trusty
 
-before_install: chmod +x gradlew
+before_install:
+  - chmod +x gradlew
+  - mysql -e 'CREATE DATABASE myapp_test;'
+
+test:
+  adapter: jdbc
+  database: myapp_test
+  username: DB_ADMIN3
+  encoding: utf8
 
 install: true
 
