@@ -19,7 +19,6 @@ public class MainController {
 
     Dish dish = new Dish();
     dish.setName(name);
-    dish.setPrice(price);
     userRepository.save(dish);
     return "Complete";
   }
