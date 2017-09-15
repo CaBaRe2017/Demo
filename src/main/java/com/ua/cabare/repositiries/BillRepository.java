@@ -5,10 +5,11 @@ import com.ua.cabare.models.Bill;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Repository
-public class BillRepositories {
+public class BillRepository {
 
   private static Set<Bill> bills;
   private static long counter = 0;
@@ -29,5 +30,9 @@ public class BillRepositories {
     }
     bills.add(bill);
     return bill;
+  }
+
+  public List<Bill> getOpenedBills() {
+    return null;
   }
 }

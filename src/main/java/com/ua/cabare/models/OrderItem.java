@@ -4,33 +4,45 @@ import com.ua.cabare.domain.Money;
 
 import java.math.BigInteger;
 
-import javax.persistence.Transient;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "order_item")
 public class OrderItem {
 
-  private
-  long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "dish_id")
   private Dish dish;
+  @Column(name = "count")
   private int count;
+  @Column(name = "total_price")
   private BigInteger totalPrice;
-  @Transient
-  private Money orderItemPrice;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "bill_id")
+  private Bill bill;
 
+  public OrderItem() {
+  }
 
   public OrderItem(Dish dish, int count) {
     this.dish = dish;
     this.count = count;
-    this.totalPrice = orderItemPrice.getValue();
-    this.orderItemPrice = dish.getDishCost();
+    this.totalPrice = dish.getDishCost().getValue();
   }
 
   public Money getOrderItemPrice() {
-    return orderItemPrice;
-  }
-
-  public void setOrderItemPrice(Money orderItemPrice) {
-    this.orderItemPrice = orderItemPrice;
-    this.totalPrice = orderItemPrice.getValue();
+    return new Money(totalPrice);
   }
 
   public long getId() {

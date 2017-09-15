@@ -8,7 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ua.cabare.models.Bill;
-import com.ua.cabare.repositiries.BillRepositories;
+import com.ua.cabare.services.BillService;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,12 +19,15 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = BillController.class)
 public class BillControllerTest {
 
   @MockBean
-  private BillRepositories billRepositories;
+  private BillService billService;
   @Autowired
   private MockMvc mockMvc;
 
@@ -37,7 +40,9 @@ public class BillControllerTest {
   public void openBill() throws Exception {
 
     Bill bill = new Bill();
-    when(billRepositories.save(any(Bill.class))).thenReturn(bill);
+    Map<String, Object> response = new HashMap<>();
+    response.put("bill", bill);
+    when(billService.openBill(any(Bill.class))).thenReturn(bill);
 
     mockMvc.perform(
         put("/bill/open")
@@ -45,7 +50,7 @@ public class BillControllerTest {
             .content(objectToJson(new Bill()))
     ).andDo(print())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-        .andExpect(content().string(objectToJson(bill)));
+        .andExpect(content().string(objectToJson(response)));
   }
 
 }
