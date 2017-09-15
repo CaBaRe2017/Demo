@@ -2,11 +2,33 @@ package com.ua.cabare.models;
 
 import com.ua.cabare.domain.Money;
 
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "recipe_ingredient")
 public class RecipeIngredient {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "ingridient_id")
   private Ingridient ingridient;
+  @Column(name = "quantity_for_dish")
   private float quantityForDish;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "dish_id")
+  private Dish dish;
 
   public long getId() {
     return id;

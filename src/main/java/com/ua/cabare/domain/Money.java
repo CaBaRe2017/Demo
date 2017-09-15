@@ -14,7 +14,7 @@ public class Money {
     this.value = new BigInteger(String.valueOf(value));
   }
 
-  private Money(BigInteger value) {
+  public Money(BigInteger value) {
     this.value = value;
   }
 

@@ -1,5 +1,6 @@
 package com.ua.cabare.services;
 
+import com.ua.cabare.domain.Money;
 import com.ua.cabare.exceptions.DiscountCardNotFoundException;
 import com.ua.cabare.exceptions.FormatException;
 import com.ua.cabare.models.Discount;
@@ -61,8 +62,8 @@ public class DiscountService {
     payment = payment.replaceFirst("[,\\.]", "");
     Discount discount = discountRepository.findByDiscountName(discountCard)
         .orElseThrow(() -> new DiscountCardNotFoundException());
-    BigInteger totalPaid = discount.getTotalPaid();
-    totalPaid.add(new BigInteger(payment));
+    Money totalPaid = discount.getPaid();
+    totalPaid.add(new Money(new BigInteger(payment)));
     discountRepository.save(discount);
     return true;
   }

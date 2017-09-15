@@ -6,16 +6,40 @@ import com.ua.cabare.domain.SaleType;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "bills")
 public class Bill {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "stuff_id")
   private Stuff stuff;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "bill")
   private List<OrderItem> orderItems;
+  @Column(name = "table_count")
   private int tableCount;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "discount_id", nullable = true)
   private Discount discount;
 
+  @Column(name = "sale_type")
   private SaleType saleType;
+  @Column(name = "pay_type")
   private PayType payType;
+  @Column(name = "pay_status")
   private PayStatus payStatus;
 
   public List<OrderItem> getOrderItems() {
