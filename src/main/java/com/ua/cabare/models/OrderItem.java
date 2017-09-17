@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order_item")
+@Table(name = "order_items")
 public class OrderItem {
 
   @Id
@@ -67,5 +67,21 @@ public class OrderItem {
 
   public void setCount(int count) {
     this.count = count;
+  }
+
+  public BigInteger getTotalPrice() {
+    return totalPrice;
+  }
+
+  public void setTotalPrice(BigInteger totalPrice) {
+    this.totalPrice = totalPrice;
+  }
+
+  public Bill getBill() {
+    return bill;
+  }
+
+  public void setBill(Bill bill) {
+    this.bill = bill;
   }
 }

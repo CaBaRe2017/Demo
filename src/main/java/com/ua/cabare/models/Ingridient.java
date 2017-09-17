@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ingridient")
+@Table(name = "ingridients")
 public class Ingridient {
 
   @Id
@@ -41,11 +41,27 @@ public class Ingridient {
     this.name = name;
   }
 
-  public Money getPricePerUnit() {
+  public float getQuantityStored() {
+    return quantityStored;
+  }
+
+  public void setQuantityStored(float quantityStored) {
+    this.quantityStored = quantityStored;
+  }
+
+  public void setPricePerUnit(BigInteger pricePerUnit) {
+    this.pricePerUnit = pricePerUnit;
+  }
+
+  public BigInteger getPricePerUnit() {
+    return pricePerUnit;
+  }
+
+  public Money getPricePerUnitMoney() {
     return new Money(pricePerUnit);
   }
 
-  public void setPricePerUnit(Money pricePerUnit) {
+  public void setPricePerUnitMoney(Money pricePerUnit) {
     this.pricePerUnit = pricePerUnit.getValue();
   }
 }

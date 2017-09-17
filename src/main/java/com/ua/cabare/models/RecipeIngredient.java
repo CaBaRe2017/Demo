@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "recipe_ingredient")
+@Table(name = "recipe_ingredients")
 public class RecipeIngredient {
 
   @Id
@@ -55,6 +55,6 @@ public class RecipeIngredient {
   }
 
   public Money getCost() {
-    return ingridient.getPricePerUnit().multiply(quantityForDish);
+    return ingridient.getPricePerUnitMoney().multiply(quantityForDish);
   }
 }
