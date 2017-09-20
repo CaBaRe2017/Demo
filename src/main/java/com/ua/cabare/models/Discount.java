@@ -2,7 +2,6 @@ package com.ua.cabare.models;
 
 import com.ua.cabare.domain.Money;
 
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -35,7 +34,7 @@ public class Discount {
   @Column(name = "emitted")
   private LocalDate emitted;
   @Column(name = "total_paid")
-  private BigInteger totalPaid;
+  private Money totalPaid;
   @Column(name = "discount_size")
   private int discountSize;
   @Column(name = "activated")
@@ -43,13 +42,12 @@ public class Discount {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "discount")
   private Set<Bill> bills;
 
-
-  public Money getPaid() {
-    return new Money(totalPaid);
+  public Money getTotalPaid() {
+    return totalPaid;
   }
 
-  public void setPaid(Money paid) {
-    this.totalPaid = paid.getValue();
+  public void setTotalPaid(Money totalPaid) {
+    this.totalPaid = totalPaid;
   }
 
   public Set<Bill> getBills() {
