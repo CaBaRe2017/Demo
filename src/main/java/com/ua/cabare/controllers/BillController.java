@@ -10,6 +10,8 @@ import com.ua.cabare.domain.Money;
 import com.ua.cabare.domain.PayStatus;
 import com.ua.cabare.domain.Response;
 import com.ua.cabare.exceptions.BillException;
+import com.ua.cabare.exceptions.DishException;
+import com.ua.cabare.exceptions.DishNotFoundException;
 import com.ua.cabare.models.Bill;
 import com.ua.cabare.models.OrderItem;
 import com.ua.cabare.services.BillService;
@@ -43,8 +45,12 @@ public class BillController {
 
   @RequestMapping(value = "/open", method = RequestMethod.PUT)
   public Response openBill(@RequestBody Bill bill, @RequestParam Money income) {
-    bill = billService.openBill(bill, income);
-    response.put(BILL, bill);
+    try {
+      bill = billService.openBill(bill, income);
+      response.put(BILL, bill);
+    } catch (DishNotFoundException ex) {
+      response.put(STATUS, ex.getMessage());
+    }
     return response;
   }
 
@@ -52,7 +58,7 @@ public class BillController {
   public Response addOrder(@RequestParam long billId, @RequestParam List<OrderItem> orderItems) {
     try {
       billService.updateBill(billId, orderItems);
-    } catch (BillException ex) {
+    } catch (BillException | DishException ex) {
       response.put(STATUS, ex.getMessage());
     }
     return response;
@@ -83,11 +89,11 @@ public class BillController {
     BillCashbackTuple billCashbackTuple = null;
     try {
       billCashbackTuple = billService.closeBill(id);
+      response.put(BILL, billCashbackTuple.bill);
+      response.put(CASHBACK, billCashbackTuple.cashback);
     } catch (BillException ex) {
       response.put(STATUS, ex.getMessage());
     }
-    response.put(BILL, billCashbackTuple.bill);
-    response.put(CASHBACK, billCashbackTuple.cashback);
     return response;
   }
 

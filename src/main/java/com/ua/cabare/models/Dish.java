@@ -20,7 +20,7 @@ public class Dish {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private long id;
   @Column(name = "name")
   private String name;
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "dish")
