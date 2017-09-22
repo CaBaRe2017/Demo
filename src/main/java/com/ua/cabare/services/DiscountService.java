@@ -9,7 +9,6 @@ import com.ua.cabare.repositiries.DiscountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
 import java.util.regex.Pattern;
 
 @Service
@@ -62,8 +61,8 @@ public class DiscountService {
     payment = payment.replaceFirst("[,\\.]", "");
     Discount discount = discountRepository.findByDiscountName(discountCard)
         .orElseThrow(() -> new DiscountCardNotFoundException());
-    Money totalPaid = discount.getPaid();
-    totalPaid.add(new Money(new BigInteger(payment)));
+    Money totalPaid = discount.getTotalPaid();
+    totalPaid.add(new Money(payment));
     discountRepository.save(discount);
     return true;
   }

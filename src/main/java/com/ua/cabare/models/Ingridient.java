@@ -2,8 +2,6 @@ package com.ua.cabare.models;
 
 import com.ua.cabare.domain.Money;
 
-import java.math.BigInteger;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +21,7 @@ public class Ingridient {
   @Column(name = "quantity_stored")
   private float quantityStored;
   @Column(name = "price_per_unit")
-  private BigInteger pricePerUnit;
+  private Money pricePerUnit;
 
   public long getId() {
     return id;
@@ -49,19 +47,11 @@ public class Ingridient {
     this.quantityStored = quantityStored;
   }
 
-  public void setPricePerUnit(BigInteger pricePerUnit) {
-    this.pricePerUnit = pricePerUnit;
-  }
-
-  public BigInteger getPricePerUnit() {
+  public Money getPricePerUnit() {
     return pricePerUnit;
   }
 
-  public Money getPricePerUnitMoney() {
-    return new Money(pricePerUnit);
-  }
-
-  public void setPricePerUnitMoney(Money pricePerUnit) {
-    this.pricePerUnit = pricePerUnit.getValue();
+  public void setPricePerUnit(Money pricePerUnit) {
+    this.pricePerUnit = pricePerUnit;
   }
 }

@@ -19,15 +19,7 @@ public class Salary {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   @Column(name = "total_salary")
-  private BigInteger totalSalary;
-
-  public Money getTotalSalaryMoney() {
-    return new Money(totalSalary);
-  }
-
-  public void setTotalSalaryMoney(Money totalSalaryMoney) {
-    this.totalSalary = totalSalaryMoney.getValue();
-  }
+  private Money totalSalary;
 
   public long getId() {
     return id;
@@ -37,11 +29,11 @@ public class Salary {
     this.id = id;
   }
 
-  public BigInteger getTotalSalary() {
+  public Money getTotalSalary() {
     return totalSalary;
   }
 
-  public void setTotalSalary(BigInteger totalSalary) {
+  public void setTotalSalary(Money totalSalary) {
     this.totalSalary = totalSalary;
   }
 }
