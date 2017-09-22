@@ -1,8 +1,7 @@
 package com.ua.cabare.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ua.cabare.domain.Money;
-
-import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,16 +17,20 @@ import javax.persistence.Table;
 @Table(name = "order_items")
 public class OrderItem {
 
+  @JsonIgnore
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "dish_id")
   private Dish dish;
   @Column(name = "count")
   private int count;
   @Column(name = "total_price")
-  private BigInteger totalPrice;
+  private Money totalPrice;
+
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "bill_id")
   private Bill bill;
@@ -35,14 +38,10 @@ public class OrderItem {
   public OrderItem() {
   }
 
-  public OrderItem(Dish dish, int count) {
+  public OrderItem(Dish dish, int count, Money cost) {
     this.dish = dish;
     this.count = count;
-    this.totalPrice = dish.getDishCost().getValue();
-  }
-
-  public Money getOrderItemPrice() {
-    return new Money(totalPrice);
+    this.totalPrice = cost.multiply(count);
   }
 
   public long getId() {
@@ -69,11 +68,11 @@ public class OrderItem {
     this.count = count;
   }
 
-  public BigInteger getTotalPrice() {
+  public Money getTotalPrice() {
     return totalPrice;
   }
 
-  public void setTotalPrice(BigInteger totalPrice) {
+  public void setTotalPrice(Money totalPrice) {
     this.totalPrice = totalPrice;
   }
 

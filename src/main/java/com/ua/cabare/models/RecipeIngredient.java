@@ -55,6 +55,6 @@ public class RecipeIngredient {
   }
 
   public Money getCost() {
-    return ingridient.getPricePerUnitMoney().multiply(quantityForDish);
+    return ingridient.getPricePerUnit().multiply(quantityForDish);
   }
 }

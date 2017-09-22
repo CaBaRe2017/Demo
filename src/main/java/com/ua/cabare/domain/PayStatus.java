@@ -3,5 +3,6 @@ package com.ua.cabare.domain;
 public enum PayStatus {
   PAID,
   PREPAID,
-  ADDITIONAL_PAY
+  ADDITIONAL_PAY,
+  AWAIT
 }
