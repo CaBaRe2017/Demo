@@ -15,9 +15,9 @@ import com.ua.cabare.domain.BillCashbackTuple;
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.exceptions.BillNotEnoughPayment;
 import com.ua.cabare.models.Bill;
+import com.ua.cabare.models.Dish;
 import com.ua.cabare.models.OrderItem;
 import com.ua.cabare.repositiries.BillRepository;
-import com.ua.cabare.services.BillService;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,6 +35,8 @@ public class BillServiceTest {
   Bill bill;
   @Mock
   BillRepository billRepository;
+  @Mock
+  DishService dishService;
   @InjectMocks
   BillService billService;
 
@@ -60,7 +62,7 @@ public class BillServiceTest {
   }
 
   @Test
-  public void openBillShouldReturnPayStatusPREPAID() {
+  public void openBillShouldReturnPayStatusPREPAID() throws Exception {
     Money totalCost = new Money(90);
     Money payment = new Money(100);
 
@@ -86,6 +88,7 @@ public class BillServiceTest {
     when(billRepository.save(any(Bill.class))).thenReturn(bill);
 
     BillCashbackTuple billCashbackTuple = billService.closeBill(1);
+
     assertThat(billCashbackTuple.bill.getPayStatus()).isEqualTo(PREPAID);
   }
 
@@ -102,15 +105,35 @@ public class BillServiceTest {
     when(billRepository.save(any(Bill.class))).thenReturn(bill);
 
     BillCashbackTuple billCashbackTuple = billService.closeBill(1);
+
     assertThat(billCashbackTuple.cashback.equals(cashback)).isTrue();
     assertThat(billCashbackTuple.bill.getPayStatus()).isEqualTo(PAID);
   }
 
   @Test
-  public void updateBillShouldAddOrdersList() throws Exception {
+  public void updateBillShouldDoNothingIfNoDishInOrdersList() throws Exception {
+    OrderItem orderItem = new OrderItem();
+    orderItem.setDish(null);
+
     when(billRepository.findById(anyLong())).thenReturn(Optional.of(bill));
 
-    billService.updateBill(1, Arrays.asList(new OrderItem()));
+    billService.updateBill(1, Arrays.asList(orderItem));
+
+    assertThat(bill.getOrderItems().size()).isEqualTo(0);
+    verify(billRepository, times(0)).save(any(Bill.class));
+  }
+
+  @Test
+  public void updateBillShouldAddOrdersList() throws Exception {
+    OrderItem orderItem = new OrderItem();
+    Dish dish = new Dish();
+    orderItem.setDish(dish);
+
+    when(billRepository.findById(anyLong())).thenReturn(Optional.of(bill));
+    when(dishService.findDish(anyLong())).thenReturn(dish);
+
+    billService.updateBill(1, Arrays.asList(orderItem));
+
     assertThat(bill.getOrderItems().size()).isEqualTo(1);
     verify(billRepository, times(1)).save(any(Bill.class));
   }
