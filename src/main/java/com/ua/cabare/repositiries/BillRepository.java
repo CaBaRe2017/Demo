@@ -1,38 +1,28 @@
 package com.ua.cabare.repositiries;
 
+import com.ua.cabare.domain.PayStatus;
 import com.ua.cabare.models.Bill;
 
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 @Repository
-public class BillRepository {
+public interface BillRepository extends CrudRepository<Bill, Long> {
 
-  private static Set<Bill> bills;
-  private static long counter = 0;
 
-  static {
-    bills = new HashSet<>();
-    Bill billFirst = new Bill();
-    billFirst.setId(++counter);
-    bills.add(billFirst);
-    Bill billSecond = new Bill();
-    billSecond.setId(++counter);
-    bills.add(billSecond);
-  }
+  Bill save(Bill bill);
 
-  public Bill save(Bill bill) {
-    if (bill.getId() == 0) {
-      bill.setId(++counter);
-    }
-    bills.add(bill);
-    return bill;
-  }
+  //  @Query("select b from Bill b where b.payStatus != ?1")
+  List<Bill> findAllByPayStatusNot(PayStatus payStatus);
 
-  public List<Bill> getOpenedBills() {
-    return null;
-  }
+  List<Bill> findAllByOpened(boolean opened);
+
+  List<Bill> findAllByPayStatus(PayStatus payStatus);
+
+  Optional<Bill> findById(long id);
+
+//  List<Bill> findAllByPayStatusNot(PayStatus payStatus);
 }
