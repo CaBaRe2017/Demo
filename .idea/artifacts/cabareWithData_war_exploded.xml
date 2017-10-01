@@ -53,18 +53,20 @@
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:1.13.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.3.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.3.10.RELEASE" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.25" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aspects:4.3.10.RELEASE" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.43" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.3.10.RELEASE" />
-          <element id="library" level="project" name="Maven: org.flywaydb:flyway-core:3.0" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-security:1.5.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.3.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:4.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:4.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:4.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring4:3.0.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:2.1.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.unbescape:unbescape:1.1.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
         </element>
       </element>
       <element id="directory" name="META-INF">

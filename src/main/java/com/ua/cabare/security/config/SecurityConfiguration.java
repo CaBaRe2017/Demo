@@ -1,6 +1,5 @@
 package com.ua.cabare.security.config;
 
-import com.ua.cabare.UserRepository;
 import com.ua.cabare.security.repository.UsersRepository;
 import com.ua.cabare.security.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +30,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable();
     http.authorizeRequests()
-        .antMatchers("**/secured/**").authenticated()
+        .antMatchers("/", "**/secured/**").authenticated()
         .anyRequest().permitAll()
-        .and().formLogin()/*.loginPage("/login")*/.permitAll();
+        .and()
+        .formLogin()
+        .loginPage("/index.html")
+        .defaultSuccessUrl("/bill.html")
+        .failureUrl("/index.html?error=true")
+        .permitAll();
   }
+
+
 
   private PasswordEncoder getPasswordEncoder() {
     return new PasswordEncoder() {

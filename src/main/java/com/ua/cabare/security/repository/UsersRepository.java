@@ -1,10 +1,11 @@
 package com.ua.cabare.security.repository;
 
-import com.ua.cabare.security.model.User;
+import com.ua.cabare.models.Staff;
+
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UsersRepository extends JpaRepository<User, Long> {
+public interface UsersRepository extends JpaRepository<Staff, Long> {
 
-  Optional<User> findByLogin(String login);
+  Optional<Staff> findByLogin(String login);
 }
