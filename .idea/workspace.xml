@@ -2,97 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a75e41bb-8b7c-47cc-ace1-d48ae45456f4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_2_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_2_6_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_1_10_19.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_2_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_4_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_1_5_7_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_1_5_7_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_3_11_RELEASE.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_6_0_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/domain/PayStatus.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/domain/PayType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/domain/SaleType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Ingridient.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/RecipeIngredient.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/security/config/SecurityConfiguration.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/security/controller/SecurityController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/security/repository/UsersRepository.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/security/service/CustomStaffDetails.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/security/service/CustomUserDetailsService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/static/Bill.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/static/Money.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/static/Money2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/static/Sklad.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/static/mainMenu.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/static/produkty.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/Dish.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/MainController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/UserRepository.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/domain/PayStatus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/domain/PayType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/domain/SaleType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Ingridient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/RecipeIngredient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Staff.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/security/config/SecurityConfiguration$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/security/config/SecurityConfiguration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/security/controller/SecurityController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/security/repository/UsersRepository.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/security/service/CustomStaffDetails.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/security/service/CustomUserDetailsService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/static/Bill.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/static/Money.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/static/Money2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/static/Sklad.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/static/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/static/mainMenu.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/static/produkty.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/ua/cabare/controllers/BillControllerTest.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/controllers/BillController.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/controllers/BillController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/domain/Money.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/domain/Money.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/domain/Report.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/domain/Report.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Bill.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Bill.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Department.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Department.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Discount.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Discount.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Dish.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Dish.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/OrderItem.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/OrderItem.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Role.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Role.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Salary.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/models/Salary.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/repositiries/BillRepository.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/repositiries/BillRepository.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/services/BillService.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/services/BillService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/ua/cabare/services/DiscountService.class" afterPath="$PROJECT_DIR$/target/classes/com/ua/cabare/services/DiscountService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/cabareWithData_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/cabareWithData_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cabareWithData.iml" afterPath="$PROJECT_DIR$/cabareWithData.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mvnw.cmd" afterPath="$PROJECT_DIR$/mvnw.cmd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/controllers/BillController.java" afterPath="$PROJECT_DIR$/src/main/java/com/ua/cabare/controllers/BillController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/domain/Report.java" afterPath="$PROJECT_DIR$/src/main/java/com/ua/cabare/domain/Report.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Bill.java" afterPath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Bill.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Department.java" afterPath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Department.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Discount.java" afterPath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Discount.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Dish.java" afterPath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Dish.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/OrderItem.java" afterPath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/OrderItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Role.java" afterPath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Role.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Salary.java" afterPath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Salary.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/repositiries/BillRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/ua/cabare/repositiries/BillRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/services/BillService.java" afterPath="$PROJECT_DIR$/src/main/java/com/ua/cabare/services/BillService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V2_1__create_user_and_role_security.sql" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V2_1__create_user_and_role_security.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/ua/cabare/services/BillServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/ua/cabare/services/BillServiceTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/application.properties" afterPath="$PROJECT_DIR$/target/classes/application.properties" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_unknown.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_1_5_7_RELEASE.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Staff.java" afterPath="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Employee.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -202,7 +112,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MoneyDescriptor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MoneyDescriptor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/hibernate/custom/types/MoneyDescriptor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="600">
@@ -210,6 +120,16 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="560">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -299,7 +219,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/domain/Report.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/ua/cabare/services/BillServiceTest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Bill.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Discount.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/PayStatus.java" />
@@ -311,6 +230,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/RawMaterial.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Calculation.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Outgo.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
       </list>
     </option>
   </component>
@@ -864,6 +784,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1732" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -877,7 +798,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33115467" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32774192" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32774192" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -973,14 +894,6 @@
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1185,9 +1098,9 @@
         <state relative-caret-position="480">
           <caret line="18" column="23" lean-forward="false" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#570#571#0" expanded="true" />
-            <element signature="e#592#593#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#570#571#0" expanded="false" />
+            <element signature="e#592#593#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1197,7 +1110,7 @@
         <state relative-caret-position="600">
           <caret line="23" column="2" lean-forward="false" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1412,6 +1325,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
