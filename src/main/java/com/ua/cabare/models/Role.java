@@ -1,24 +1,19 @@
 package com.ua.cabare.models;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Role extends EntityManager<Long, Role> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
 
   @Column(name = "name")
   private String name;
@@ -26,19 +21,13 @@ public class Role {
   public Role() {
   }
 
-  public long getId() {
+  @Override
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  @Override
+  public void setId(Long id) {
     this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 }

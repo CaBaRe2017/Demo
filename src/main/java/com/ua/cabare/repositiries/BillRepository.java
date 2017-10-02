@@ -1,7 +1,7 @@
 package com.ua.cabare.repositiries;
 
-import com.ua.cabare.domain.PayStatus;
 import com.ua.cabare.models.Bill;
+import com.ua.cabare.models.PayStatus;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

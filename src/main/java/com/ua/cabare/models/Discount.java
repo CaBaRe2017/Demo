@@ -13,32 +13,44 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "discounts")
-public class Discount {
+public class Discount extends EntityManager<Long, Discount> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
+
   @Column(name = "discount_card")
   private String discountCard;
+
   @Column(name = "first_name")
   private String firstName;
+
   @Column(name = "last_name")
   private String lastName;
-  @Column(name = "male")
-  private boolean male;
-  @Column(name = "birthday")
+
+  @Column(name = "gender")
+  private String gender;
+
+  @Column(name = "birthday", columnDefinition = "date")
   private LocalDate birthday;
-  @Column(name = "emitted")
+
+  @Column(name = "emitted", columnDefinition = "date")
   private LocalDate emitted;
+
   @Column(name = "total_paid")
+  @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
   private Money totalPaid;
+
   @Column(name = "discount_size")
   private int discountSize;
+
   @Column(name = "activated")
   private boolean activated;
+
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "discount")
   private Set<Bill> bills;
 
@@ -56,14 +68,6 @@ public class Discount {
 
   public void setBills(Set<Bill> bills) {
     this.bills = bills;
-  }
-
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
   }
 
   public boolean isActivated() {
@@ -98,14 +102,6 @@ public class Discount {
     this.lastName = lastName;
   }
 
-  public boolean isMale() {
-    return male;
-  }
-
-  public void setMale(boolean male) {
-    this.male = male;
-  }
-
   public LocalDate getBirthday() {
     return birthday;
   }
@@ -128,5 +124,23 @@ public class Discount {
 
   public void setDiscountSize(int discountSize) {
     this.discountSize = discountSize;
+  }
+
+  @Override
+  public Long getId() {
+    return id;
+  }
+
+  @Override
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getGender() {
+    return gender;
+  }
+
+  public void setGender(String gender) {
+    this.gender = gender;
   }
 }

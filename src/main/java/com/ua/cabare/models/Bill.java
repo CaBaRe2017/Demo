@@ -3,12 +3,14 @@ package com.ua.cabare.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ua.cabare.domain.Money;
-import com.ua.cabare.domain.PayStatus;
-import com.ua.cabare.domain.PayType;
-import com.ua.cabare.domain.SaleType;
+//import com.ua.cabare.domain.PayStatus;
+//import com.ua.cabare.domain.PayType;
+//import com.ua.cabare.domain.SaleType;
 
+import javax.persistence.OneToOne;
 import org.hibernate.annotations.Type;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,35 +28,53 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "bills")
-public class Bill {
+public class Bill extends EntityManager<Long, Bill> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
+
+  @Column(name = "bill_number")
+  private int billNumber;
+
+  @Column(name = "bill_date", columnDefinition = "date")
+  private LocalDate billDate;
+
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "stuff_id")
-  private Stuff stuff;
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "bill", cascade = CascadeType.ALL)
-  private List<OrderItem> orderItems;
-  @Column(name = "table_count")
-  private int tableCount;
+  @JoinColumn(name = "employee_id")
+  private Employee employee;
+
+  @Column(name = "table_number")
+  private int tableNumber;
+
+  @Column(name = "number_of_persons")
+  private int numberOfPersons;
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "discount_id", nullable = true)
   private Discount discount;
+
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "sale_type_id")
+  private SaleType saleType;
+
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "pay_type_id")
+  private PayType payType;
+
+  @JsonIgnore
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "pay_status_id")
+  private PayStatus payStatus;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "bill", cascade = CascadeType.ALL)
+  private List<OrderItem> orderItems;
 
   @JsonProperty(defaultValue = "0")
   @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
   @Column(name = "money_paid")
   private Money paid;
 
-  @Column(name = "sale_type", nullable = false)
-  private SaleType saleType;
-  @Column(name = "pay_type", nullable = false)
-  private PayType payType;
-
-  @JsonIgnore
-  @Column(name = "pay_status", nullable = false)
-  private PayStatus payStatus;
   @JsonIgnore
   @Column(name = "opened", nullable = false, columnDefinition = "BIT(1) NULL DEFAULT 1")
   private boolean opened;
@@ -88,11 +108,13 @@ public class Bill {
     this.orderItems = orderItems;
   }
 
-  public long getId() {
+  @Override
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  @Override
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -104,20 +126,44 @@ public class Bill {
     this.saleType = saleType;
   }
 
-  public Stuff getStuff() {
-    return stuff;
+  public int getBillNumber() {
+    return billNumber;
   }
 
-  public void setStuff(Stuff stuff) {
-    this.stuff = stuff;
+  public void setBillNumber(int billNumber) {
+    this.billNumber = billNumber;
   }
 
-  public int getTableCount() {
-    return tableCount;
+  public LocalDate getBillDate() {
+    return billDate;
   }
 
-  public void setTableCount(int tableCount) {
-    this.tableCount = tableCount;
+  public void setBillDate(LocalDate billDate) {
+    this.billDate = billDate;
+  }
+
+  public Employee getEmployee() {
+    return employee;
+  }
+
+  public void setEmployee(Employee employee) {
+    this.employee = employee;
+  }
+
+  public int getTableNumber() {
+    return tableNumber;
+  }
+
+  public void setTableNumber(int tableNumber) {
+    this.tableNumber = tableNumber;
+  }
+
+  public int getNumberOfPersons() {
+    return numberOfPersons;
+  }
+
+  public void setNumberOfPersons(int numberOfPersons) {
+    this.numberOfPersons = numberOfPersons;
   }
 
   public Discount getDiscount() {
@@ -142,22 +188,6 @@ public class Bill {
 
   public void setPayStatus(PayStatus payStatus) {
     this.payStatus = payStatus;
-  }
-
-  @Override
-  public String toString() {
-    return "Bill{"
-        + "id=" + id
-        + ", stuff=" + stuff
-        + ", orderItems=" + orderItems
-        + ", tableCount=" + tableCount
-        + ", discount=" + discount
-        + ", paid=" + paid
-        + ", saleType=" + saleType
-        + ", payType=" + payType
-        + ", payStatus=" + payStatus
-        + ", opened=" + opened
-        + '}';
   }
 
   @JsonIgnore

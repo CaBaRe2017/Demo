@@ -2,30 +2,33 @@ package com.ua.cabare.models;
 
 import com.ua.cabare.domain.Money;
 
-import java.math.BigInteger;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "salaries")
-public class Salary {
+public class Salary extends EntityManager<Long, Salary> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
+
   @Column(name = "total_salary")
+  @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
   private Money totalSalary;
 
-  public long getId() {
+  @Override
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  @Override
+  public void setId(Long id) {
     this.id = id;
   }
 
