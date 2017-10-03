@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="cabareWithData:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="cabare.war">
+      <element id="artifact" artifact-name="cabareWithData:war exploded" />
+    </root>
+  </artifact>
+</component>

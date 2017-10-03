@@ -1,8 +1,5 @@
 package com.ua.cabare.services;
 
-import static com.ua.cabare.domain.PayStatus.AWAIT;
-import static com.ua.cabare.domain.PayStatus.PAID;
-import static com.ua.cabare.domain.PayStatus.PREPAID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
@@ -57,7 +54,7 @@ public class BillServiceTest {
 
     Bill savedBill = billService.openBill(this.bill, payment);
 
-    assertThat(savedBill.getPayStatus()).isEqualTo(AWAIT);
+    assertThat(savedBill.getPayStatus()).isEqualTo("AWAIT");
     assertThat(savedBill.getPaid().equals(payment)).isTrue();
   }
 
@@ -72,7 +69,7 @@ public class BillServiceTest {
 
     Bill savedBill = billService.openBill(this.bill, payment);
 
-    assertThat(savedBill.getPayStatus()).isEqualTo(PREPAID);
+    assertThat(savedBill.getPayStatus()).isEqualTo("PREPAID");
     assertThat(savedBill.getPaid().equals(payment)).isTrue();
   }
 
@@ -89,7 +86,7 @@ public class BillServiceTest {
 
     BillCashbackTuple billCashbackTuple = billService.closeBill(1);
 
-    assertThat(billCashbackTuple.bill.getPayStatus()).isEqualTo(PREPAID);
+    assertThat(billCashbackTuple.bill.getPayStatus()).isEqualTo("PREPAID");
   }
 
   @Test
@@ -107,7 +104,7 @@ public class BillServiceTest {
     BillCashbackTuple billCashbackTuple = billService.closeBill(1);
 
     assertThat(billCashbackTuple.cashback.equals(cashback)).isTrue();
-    assertThat(billCashbackTuple.bill.getPayStatus()).isEqualTo(PAID);
+    assertThat(billCashbackTuple.bill.getPayStatus()).isEqualTo("PAID");
   }
 
   @Test
