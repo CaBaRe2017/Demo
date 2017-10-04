@@ -1,5 +1,5 @@
 -- Table users:
-CREATE TABLE staff(
+CREATE TABLE employee(
   user_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
   login VARCHAR(255) NOT NULL ,
   password VARCHAR(255) NOT NULL ,
@@ -27,7 +27,7 @@ CREATE TABLE user_role(
   user_id BIGINT NOT NULL ,
   roles_role_id BIGINT NOT NULL ,
 
-  FOREIGN KEY (user_id) REFERENCES staff(user_id),
+  FOREIGN KEY (user_id) REFERENCES employee(user_id),
   FOREIGN KEY (roles_role_id) REFERENCES role(role_id)
 )
   ENGINE = InnoDB;

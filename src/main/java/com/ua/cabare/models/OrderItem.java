@@ -12,10 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "order_items")
-public class OrderItem {
+public class OrderItem extends EntityManager<Long, OrderItem> {
 
   @JsonIgnore
   @Id
@@ -25,9 +26,12 @@ public class OrderItem {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "dish_id")
   private Dish dish;
-  @Column(name = "count")
-  private int count;
+
+  @Column(name = "quantity")
+  private int quantity;
+
   @Column(name = "total_price")
+  @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
   private Money totalPrice;
 
   @JsonIgnore
@@ -38,17 +42,18 @@ public class OrderItem {
   public OrderItem() {
   }
 
-  public OrderItem(Dish dish, int count, Money cost) {
+  public OrderItem(Dish dish, int quantity, Money cost) {
     this.dish = dish;
-    this.count = count;
-    this.totalPrice = cost.multiply(count);
+    this.quantity = quantity;
+    this.totalPrice = cost.multiply(quantity);
   }
-
-  public long getId() {
+  @Override
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  @Override
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -60,12 +65,12 @@ public class OrderItem {
     this.dish = dish;
   }
 
-  public int getCount() {
-    return count;
+  public int getQuantity() {
+    return quantity;
   }
 
-  public void setCount(int count) {
-    this.count = count;
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
   }
 
   public Money getTotalPrice() {

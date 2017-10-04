@@ -1,26 +1,22 @@
 package com.ua.cabare.models;
 
-import com.ua.cabare.domain.Money;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name = "salaries")
-public class Salary extends EntityManager<Long, Salary> {
+@Table(name = "write_off_reasons")
+public class WriteOffReason extends EntityManager<Long, WriteOffReason> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "total_salary")
-  @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
-  private Money totalSalary;
+  @Column(name = "reason")
+  private String reason;
 
   @Override
   public Long getId() {
@@ -32,11 +28,11 @@ public class Salary extends EntityManager<Long, Salary> {
     this.id = id;
   }
 
-  public Money getTotalSalary() {
-    return totalSalary;
+  public String getReason() {
+    return reason;
   }
 
-  public void setTotalSalary(Money totalSalary) {
-    this.totalSalary = totalSalary;
+  public void setReason(String reason) {
+    this.reason = reason;
   }
 }
