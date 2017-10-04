@@ -61,6 +61,7 @@
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:5.2.10.Final" />
           <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy:1.6.6" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Maven: org.flywaydb:flyway-core:3.0" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-security:unknown" />
         </element>
       </element>
