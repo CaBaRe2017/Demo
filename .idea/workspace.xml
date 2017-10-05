@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a75e41bb-8b7c-47cc-ace1-d48ae45456f4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V2_1__create_user_and_role_security.sql" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/db/migration/V2_1__create_user_and_role_security.sql" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/cabareWithData_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/cabareWithData_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cabareWithData.iml" afterPath="$PROJECT_DIR$/cabareWithData.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1_1__create_initial_schema.sql" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1_1__create_initial_schema.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/db/migration/V1_1__create_initial_schema.sql" afterPath="$PROJECT_DIR$/target/classes/db/migration/V1_1__create_initial_schema.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,91 +42,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Stocktake.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Stocktake.java">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="41" column="40" lean-forward="false" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+            <state relative-caret-position="480">
+              <caret line="57" column="17" lean-forward="false" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
               <folding>
-                <element signature="e#1007#1008#0" expanded="true" />
-                <element signature="e#1068#1069#0" expanded="true" />
-                <element signature="e#1114#1115#0" expanded="true" />
-                <element signature="e#1161#1162#0" expanded="true" />
-                <element signature="e#1190#1191#0" expanded="true" />
-                <element signature="e#1254#1255#0" expanded="true" />
-                <element signature="e#1296#1297#0" expanded="true" />
-                <element signature="e#1334#1335#0" expanded="true" />
-                <element signature="e#1365#1366#0" expanded="true" />
-                <element signature="e#1422#1423#0" expanded="true" />
-                <element signature="e#1468#1469#0" expanded="true" />
+                <marker date="1507148795406" expanded="true" signature="3372:3379" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WriteOffReason.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/models/WriteOffReason.java">
+      <file leaf-file-name="V1_1__create_initial_schema.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/db/migration/V1_1__create_initial_schema.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="-9933">
+              <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WriteOffPosition.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/models/WriteOffPosition.java">
+      <file leaf-file-name="cabareWithData.iml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cabareWithData.iml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="747">
-              <caret line="83" column="40" lean-forward="false" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
+            <state relative-caret-position="-3453">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RawMaterial.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/models/RawMaterial.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="45" column="70" lean-forward="false" selection-start-line="45" selection-start-column="70" selection-end-line="45" selection-end-column="70" />
-              <folding>
-                <element signature="e#2745#2746#0" expanded="true" />
-                <element signature="e#2785#2786#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Calculation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Calculation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="655">
-              <caret line="126" column="3" lean-forward="false" selection-start-line="126" selection-start-column="3" selection-end-line="126" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Outgo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Outgo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="800">
-              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoneyDescriptor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/hibernate/custom/types/MoneyDescriptor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="30" column="3" lean-forward="false" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -127,32 +77,8 @@
       <file leaf-file-name="application.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Employee.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Employee.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="37" column="61" lean-forward="false" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2673#2674#0" expanded="true" />
-                <element signature="e#2694#2695#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrderItem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/models/OrderItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="33" column="70" lean-forward="false" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
+            <state relative-caret-position="600">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -180,9 +106,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/security/model/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/Dish.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/security/service/CustomUserDetailsService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/security/repository/UsersRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/security/model/CustomUserDetails.java" />
         <option value="$PROJECT_DIR$/src/main/resources/db/migration/V2_1__create_user_and_role_security.sql" />
@@ -218,7 +141,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/repositiries/BillRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/domain/Report.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/ua/cabare/services/BillServiceTest.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Bill.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Discount.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/PayStatus.java" />
@@ -230,6 +152,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/RawMaterial.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Calculation.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Outgo.java" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/_gitignore" />
+        <option value="$PROJECT_DIR$/src/main/resources/db/migration/V1_1__create_initial_schema.sql" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
       </list>
     </option>
@@ -286,6 +212,11 @@
             <path>
               <item name="Demo" type="b2602c69:ProjectViewProjectNode" />
               <item name="Demo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Demo" type="b2602c69:ProjectViewProjectNode" />
@@ -464,57 +395,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapps" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ua" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ua" type="462c0819:PsiDirectoryNode" />
-              <item name="cabare" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ua" type="462c0819:PsiDirectoryNode" />
-              <item name="cabare" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Demo" type="b2602c69:ProjectViewProjectNode" />
@@ -784,7 +664,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1732" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -794,11 +673,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44588235" sideWeight="0.5021482" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967743" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3137255" sideWeight="0.49785176" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3137255" sideWeight="0.49785176" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33115467" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32774192" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32774192" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -809,11 +688,33 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39941904" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44588235" sideWeight="0.5021482" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967743" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967743" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39941904" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970226" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3137255" sideWeight="0.49785176" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33115467" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32774192" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970226" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -843,25 +744,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/models/Ingridient.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/models/RecipeIngredient.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/services/BillService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="827">
-          <caret line="125" column="37" lean-forward="true" selection-start-line="125" selection-start-column="37" selection-end-line="125" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3924#3925#0" expanded="false" />
-            <element signature="e#3977#3978#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ua/cabare/services/DiscountService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1253">
           <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -883,7 +769,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -891,19 +776,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3280">
           <caret line="106" column="70" lean-forward="false" selection-start-line="106" selection-start-column="70" selection-end-line="106" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1000">
-          <caret line="25" column="29" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="29" />
-          <folding>
-            <marker date="1506959304022" expanded="true" signature="3380:3387" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -911,9 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-133">
           <caret line="83" column="20" lean-forward="true" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -921,9 +790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-133">
           <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -931,7 +797,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -939,9 +804,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1893">
           <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -949,7 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -957,7 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -965,9 +825,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -987,7 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1028,9 +884,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1049,7 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1057,7 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1065,7 +916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="44" column="70" lean-forward="false" selection-start-line="44" selection-start-column="70" selection-end-line="44" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1073,7 +923,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1081,7 +930,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1089,7 +937,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1109,9 +956,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="23" column="2" lean-forward="false" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1119,7 +963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1127,7 +970,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1135,7 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1143,7 +984,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="21" column="70" lean-forward="false" selection-start-line="21" selection-start-column="70" selection-end-line="21" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1151,7 +991,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1159,7 +998,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1167,7 +1005,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-120">
           <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1175,7 +1012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-120">
           <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1193,11 +1029,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="37" column="61" lean-forward="false" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2673#2674#0" expanded="true" />
-            <element signature="e#2694#2695#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1205,7 +1036,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
           <caret line="33" column="70" lean-forward="false" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1213,19 +1043,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1080">
           <caret line="41" column="40" lean-forward="false" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
-          <folding>
-            <element signature="e#1007#1008#0" expanded="true" />
-            <element signature="e#1068#1069#0" expanded="true" />
-            <element signature="e#1114#1115#0" expanded="true" />
-            <element signature="e#1161#1162#0" expanded="true" />
-            <element signature="e#1190#1191#0" expanded="true" />
-            <element signature="e#1254#1255#0" expanded="true" />
-            <element signature="e#1296#1297#0" expanded="true" />
-            <element signature="e#1334#1335#0" expanded="true" />
-            <element signature="e#1365#1366#0" expanded="true" />
-            <element signature="e#1422#1423#0" expanded="true" />
-            <element signature="e#1468#1469#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1233,7 +1050,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1270,7 +1086,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="800">
           <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1309,12 +1124,13 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="0.19368958599306949" x="2731.5" y="1419.5" />
+          <settings layout="Hierarchic Group" zoom="0.19368958599306949" x="2732.0" y="1420.0" />
           <SelectedNodes />
           <Categories>
-            <Category>Key columns</Category>
             <Category>Columns</Category>
+            <Category>Key columns</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
@@ -1322,16 +1138,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="30" column="3" lean-forward="false" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49760">
+          <caret line="1329" column="7" lean-forward="false" selection-start-line="1329" selection-start-column="7" selection-end-line="1329" selection-end-column="7" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1507148848064" expanded="true" signature="76830:76847" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="76830:76865" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="76830:76878" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="76830:76893" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="76928:79224" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="76941:79209" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="76995:77385" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77014:77370" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77133:77350" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77173:77316" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77194:77294" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77435:77744" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77454:77729" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77531:77709" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77571:77675" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77592:77653" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77795:78060" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77814:78045" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77847:78025" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77887:77991" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="77908:77969" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78103:78409" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78122:78394" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78196:78374" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78236:78340" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78257:78318" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78460:78816" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78479:78801" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78564:78781" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78604:78747" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78625:78725" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78868:79195" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78887:79180" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="78982:79160" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="79022:79126" ph="..." />
+            <marker date="1507148848064" expanded="true" signature="79043:79104" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/migration/V1_1__create_initial_schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9933">
+          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="57" column="17" lean-forward="false" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+          <folding>
+            <marker date="1507148795406" expanded="true" signature="3372:3379" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="600">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>

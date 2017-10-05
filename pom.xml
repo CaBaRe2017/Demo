@@ -46,12 +46,11 @@
     </dependency>
 
     <!-- Add database migration support -->
-    <!--<dependency>
+    <dependency>
       <groupId>org.flywaydb</groupId>
       <artifactId>flyway-core</artifactId>
       <version>3.0</version>
     </dependency>
--->
     <!-- Add security support -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
