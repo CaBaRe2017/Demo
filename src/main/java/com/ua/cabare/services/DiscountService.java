@@ -4,7 +4,7 @@ import com.ua.cabare.domain.Money;
 import com.ua.cabare.exceptions.DiscountCardNotFoundException;
 import com.ua.cabare.exceptions.FormatException;
 import com.ua.cabare.models.Discount;
-import com.ua.cabare.repositiries.DiscountRepository;
+import com.ua.cabare.repositories.DiscountRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

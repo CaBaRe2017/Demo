@@ -2,7 +2,7 @@ package com.ua.cabare.services;
 
 import com.ua.cabare.exceptions.DishNotFoundException;
 import com.ua.cabare.models.Dish;
-import com.ua.cabare.repositiries.DishRepository;
+import com.ua.cabare.repositories.DishRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -9,8 +9,8 @@ import com.ua.cabare.models.Bill;
 import com.ua.cabare.models.Dish;
 import com.ua.cabare.models.OrderItem;
 import com.ua.cabare.models.PayStatus;
-import com.ua.cabare.repositiries.BillRepository;
-import com.ua.cabare.repositiries.PayStatusRepository;
+import com.ua.cabare.repositories.BillRepository;
+import com.ua.cabare.repositories.PayStatusRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
