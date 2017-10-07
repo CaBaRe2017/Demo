@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/login")
 public class SecurityController {
 
-  @RequestMapping(value = "/secured", method = RequestMethod.GET)
+  @RequestMapping(value = "/secured", method = RequestMethod.POST)
   public String login(Model model, String error, String logout){
     if (error != null) {
       model.addAttribute("error", "Your username and password is invalid.");
@@ -19,7 +19,7 @@ public class SecurityController {
     if (logout != null) {
       model.addAttribute("message", "You have been logged out successfully.");
     }
-    return "redirect:/welcome";
+    return "welcome";
   }
 
   /*@GetMapping("/welcome")
@@ -30,7 +30,7 @@ public class SecurityController {
   @PreAuthorize("hasAnyRole('ADMIN')")
   @RequestMapping(value = {"/secured/welcome","/admin/","/admin"})
   public String securedWelcome(){
-    return "redirect:/admin";
+    return "admin";
   }
 
 }

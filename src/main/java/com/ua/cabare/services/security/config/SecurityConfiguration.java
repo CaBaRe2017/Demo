@@ -31,15 +31,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable();
     http.authorizeRequests()
-        .antMatchers("/", "**/secured/**").permitAll()
-        .anyRequest().authenticated()
+        .antMatchers("**/secured/**").authenticated()
+        .anyRequest().permitAll()
         .and()
-        .formLogin().loginPage("/login")
+        .formLogin().loginPage("/index.html")
         //.defaultSuccessUrl("/bill.html")
-        //.failureUrl("/index.html?error=true")
+        .failureUrl("/index.html?error=true")
         .permitAll()
         .and()
-        .logout().permitAll();
+        .logout()
+        //.logoutUrl("")
+        .permitAll();
   }
 
   private PasswordEncoder getPasswordEncoder() {
