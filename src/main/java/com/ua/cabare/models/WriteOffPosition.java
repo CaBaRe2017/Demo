@@ -1,12 +1,14 @@
 package com.ua.cabare.models;
 
 import com.ua.cabare.domain.Money;
+import com.ua.cabare.hibernate.custom.types.MoneyConverter;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -37,7 +40,7 @@ public class WriteOffPosition extends EntityManager<Long, WriteOffPosition> {
   private float writeOffQuantity;
 
   @Column(name = "price_of_last_supply")
-  @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
+  @Convert(converter = MoneyConverter.class)
   private Money priceOfLastSupply;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "writeOffPosition")

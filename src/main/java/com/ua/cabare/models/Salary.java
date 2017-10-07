@@ -1,14 +1,17 @@
 package com.ua.cabare.models;
 
 import com.ua.cabare.domain.Money;
+import com.ua.cabare.hibernate.custom.types.MoneyConverter;
+
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "salaries")
@@ -19,7 +22,7 @@ public class Salary extends EntityManager<Long, Salary> {
   private Long id;
 
   @Column(name = "total_salary")
-  @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
+  @Convert(converter = MoneyConverter.class)
   private Money totalSalary;
 
   @Override
