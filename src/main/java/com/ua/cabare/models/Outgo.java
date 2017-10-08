@@ -1,11 +1,13 @@
 package com.ua.cabare.models;
 
 import com.ua.cabare.domain.Money;
+import com.ua.cabare.hibernate.custom.types.MoneyConverter;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -39,7 +41,7 @@ public class Outgo extends EntityManager<Long, Outgo> {
   private Employee employee;
 
   @Column(name = "outgo_cost")
-  @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
+  @Convert(converter = MoneyConverter.class)
   private Money outgoCost;
 
   @Column(name = "cost_quantity")

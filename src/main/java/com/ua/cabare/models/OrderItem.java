@@ -2,8 +2,10 @@ package com.ua.cabare.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ua.cabare.domain.Money;
+import com.ua.cabare.hibernate.custom.types.MoneyConverter;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -31,7 +33,7 @@ public class OrderItem extends EntityManager<Long, OrderItem> {
   private int quantity;
 
   @Column(name = "total_price")
-  @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
+  @Convert(converter = MoneyConverter.class)
   private Money totalPrice;
 
   @JsonIgnore

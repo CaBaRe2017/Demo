@@ -3,12 +3,7 @@ package com.ua.cabare.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ua.cabare.domain.Money;
-//import com.ua.cabare.domain.PayStatus;
-//import com.ua.cabare.domain.PayType;
-//import com.ua.cabare.domain.SaleType;
-
-import javax.persistence.OneToOne;
-import org.hibernate.annotations.Type;
+import com.ua.cabare.hibernate.custom.types.MoneyConverter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +11,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,6 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -71,7 +68,7 @@ public class Bill extends EntityManager<Long, Bill> {
   private List<OrderItem> orderItems;
 
   @JsonProperty(defaultValue = "0")
-  @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
+  @Convert(converter = MoneyConverter.class)
   @Column(name = "money_paid")
   private Money paid;
 

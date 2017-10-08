@@ -5,102 +5,99 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Money implements Serializable {
 
-
-  transient public static final Money ZERO = new Money(0);
   @JsonIgnore
-  private long value;
+  public static final Money ZERO = new Money(0);
+  @JsonIgnore
+  private static final Pattern pattern = Pattern.compile("(?<=\\.)\\d{1,2}");
+  @JsonIgnore
+  private long rawValue;
   @JsonProperty(defaultValue = "0")
-  private String formatedValue;
+  private String value;
 
-  public long getValue() {
-    return value;
+  public long getRawValue() {
+    return rawValue;
   }
 
-  public String getFormatedValue() {
-    String s = String.valueOf(value);
-    s = s.substring(0, s.length() - 2) + "." + s.substring(s.length() - 2, s.length());
-    return s.length() == 3 ? "0" + s : s;
+  public String getValue() {
+    return String.format("%d.%02d", rawValue / 100, rawValue % 100);
   }
 
-  public void setFormatedValue(String formatedValue) {
-    this.formatedValue = formatedValue;
-    this.value = convertToLong(formatedValue);
+  public void setValue(String value) {
+    this.value = value;
+    this.rawValue = convertToLong(value);
   }
 
   public static Money valueOf(long value) {
     Money money = new Money();
-    money.value = value;
+    money.rawValue = value;
     return money;
   }
 
   private Money() {
-    this.value = 0;
-  }
-
-  public Money(Money money) {
-    this.value = money.value;
-    this.formatedValue = money.formatedValue;
+    this.rawValue = 0;
   }
 
   public Money(long value) {
-    this.value = value * 100;
+    this.rawValue = value * 100;
   }
 
   public Money(String value) {
-    this.value = convertToLong(value);
+    this.rawValue = convertToLong(value);
   }
 
-  private long convertToLong(String value) {
-    String str = value;
-    int dotPosition = value.indexOf(".");
-    if ((value.lastIndexOf(".") == dotPosition) && dotPosition != -1) {
-      str = value.substring(0, dotPosition);
-      int i = dotPosition + 1;
-      int j = 0;
-      while (i < value.length() && j++ < 2) {
-        str += value.charAt(i++);
-      }
+  private static long convertToLong(String value) {
+    String s = value.replaceAll("\\..*", "");
+    Matcher matcher = pattern.matcher(value);
+    if (matcher.find()) {
+      String group = matcher.group();
+      s += group.length() == 1 ? group + "0" : group;
+    } else {
+      s += "00";
     }
-    return Long.parseLong(str);
+    return Long.parseLong(s);
   }
+
 
   public Money add(Money money) {
-    return valueOf(money.value + value);
+    return valueOf(money.rawValue + rawValue);
   }
 
   public Money subtract(Money money) {
-    return valueOf(value - money.value);
-  }
 
-  public Money multiply(Money money) {
-    return valueOf(value * money.value);
+    long diff = rawValue - money.rawValue;
+    if (diff < 0) {
+      throw new RuntimeException("Incorrect operation");
+    }
+    return valueOf(diff);
   }
 
   public Money multiply(long value) {
-    return valueOf(this.value * value);
+    return valueOf(this.rawValue * value);
   }
 
   public Money multiply(double value) {
-    return valueOf(((long) (this.value * value)));
+    return valueOf(((long) (this.rawValue * value)));
   }
 
   public boolean isMoreThan(Money money) {
-    return value > money.value;
+    return rawValue > money.rawValue;
   }
 
   public boolean isEqualTo(Money money) {
-    return value == money.value;
+    return rawValue == money.rawValue;
   }
 
   public boolean isLessThan(Money money) {
-    return value < money.value;
+    return rawValue < money.rawValue;
   }
 
   private boolean isZero() {
-    return value == 0;
+    return rawValue == 0;
   }
 
   @Override
@@ -112,11 +109,11 @@ public class Money implements Serializable {
       return false;
     }
     Money money = (Money) o;
-    return value == money.value;
+    return rawValue == money.rawValue;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(value);
+    return Objects.hash(rawValue);
   }
 }
