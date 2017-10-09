@@ -199,7 +199,7 @@ public class Bill extends EntityManager<Long, Bill> {
   public Money getOrdersCost() {
     Money cost = Money.ZERO;
     for (OrderItem orderItem : this.getOrderItems()) {
-      cost.add(orderItem.getTotalPrice());
+      cost = cost.add(orderItem.getTotalPrice());
     }
     return cost;
   }
