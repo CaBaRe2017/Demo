@@ -2,7 +2,6 @@ package com.ua.cabare.services;
 
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.exceptions.DiscountCardNotFoundException;
-import com.ua.cabare.exceptions.FormatException;
 import com.ua.cabare.models.Discount;
 import com.ua.cabare.repositiries.DiscountRepository;
 
@@ -53,16 +52,12 @@ public class DiscountService {
     return true;
   }
 
-  public boolean addPayment(String discountCard, String payment)
-      throws DiscountCardNotFoundException, FormatException {
-    if (!isValidPayment(payment)) {
-      throw new FormatException("Payment incorrect format.");
-    }
-    payment = payment.replaceFirst("[,\\.]", "");
+  public boolean addPayment(String discountCard, Money payment)
+      throws DiscountCardNotFoundException {
     Discount discount = discountRepository.findByDiscountName(discountCard)
         .orElseThrow(() -> new DiscountCardNotFoundException());
-    Money totalPaid = discount.getTotalPaid();
-    totalPaid.add(new Money(payment));
+    Money totalPaid = discount.getTotalPaid().add(payment);
+    discount.setTotalPaid(totalPaid);
     discountRepository.save(discount);
     return true;
   }

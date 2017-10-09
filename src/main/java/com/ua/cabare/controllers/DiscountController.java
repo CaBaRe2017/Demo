@@ -1,5 +1,6 @@
 package com.ua.cabare.controllers;
 
+import com.ua.cabare.domain.Money;
 import com.ua.cabare.exceptions.DiscountCardNotFoundException;
 import com.ua.cabare.exceptions.FormatException;
 import com.ua.cabare.models.Discount;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/disountcard")
+@RequestMapping("/discountcard")
 public class DiscountController {
 
   @Autowired
@@ -44,8 +45,8 @@ public class DiscountController {
   }
 
   @RequestMapping("/addpayment")
-  public void addPayment(String discountCard, String payment)
-      throws DiscountCardNotFoundException, FormatException {
+  public void addPayment(String discountCard, Money payment)
+      throws DiscountCardNotFoundException {
     discountService.addPayment(discountCard, payment);
   }
 }
