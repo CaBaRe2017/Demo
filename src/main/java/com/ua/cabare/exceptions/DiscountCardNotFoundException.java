@@ -1,9 +1,11 @@
 package com.ua.cabare.exceptions;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Discount card is not found")
+import static com.ua.cabare.domain.ResponseStatus.DISCOUNT_CARD_NOT_FOUND;
+
 public class DiscountCardNotFoundException extends Exception {
 
+  public DiscountCardNotFoundException() {
+    super(DISCOUNT_CARD_NOT_FOUND);
+  }
 }
