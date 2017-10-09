@@ -1,11 +1,13 @@
 package com.ua.cabare.models;
 
 import com.ua.cabare.domain.Money;
+import com.ua.cabare.hibernate.custom.types.MoneyConverter;
 
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -36,6 +38,10 @@ public class Dish extends EntityManager<Long, Dish> {
   @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "dish_category_id")
   private DishCategory dishCategory;
+
+  @Column(name = "price")
+  @Convert(converter = MoneyConverter.class)
+  private Money price;
 
   @Override
   public Long getId() {
@@ -79,13 +85,12 @@ public class Dish extends EntityManager<Long, Dish> {
     this.dishCategory = dishCategory;
   }
 
-  public Money getDishCost() {
-    Money cost = new Money(0);
-    calculations
-        .stream()
-        .map(calculation -> calculation.getDishPrice())
-        .forEach(c -> cost.add(c));
-    return cost;
+  public Money getPrice() {
+    return price;
+  }
+
+  public void setPrice(Money price) {
+    this.price = price;
   }
 }
 

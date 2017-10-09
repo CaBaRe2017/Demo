@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "order_items")
@@ -44,10 +43,10 @@ public class OrderItem extends EntityManager<Long, OrderItem> {
   public OrderItem() {
   }
 
-  public OrderItem(Dish dish, int quantity, Money cost) {
+  public OrderItem(Dish dish, int quantity) {
     this.dish = dish;
     this.quantity = quantity;
-    this.totalPrice = cost.multiply(quantity);
+    this.totalPrice = dish.getPrice().multiply(quantity);
   }
   @Override
   public Long getId() {
