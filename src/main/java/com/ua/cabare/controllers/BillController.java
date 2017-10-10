@@ -13,7 +13,7 @@ import com.ua.cabare.exceptions.DishException;
 import com.ua.cabare.exceptions.DishNotFoundException;
 import com.ua.cabare.models.Bill;
 import com.ua.cabare.models.OrderItem;
-import com.ua.cabare.models.PayStatus;
+import com.ua.cabare.domain.PayStatus;
 import com.ua.cabare.services.BillService;
 
 import org.springframework.beans.factory.annotation.Autowired;

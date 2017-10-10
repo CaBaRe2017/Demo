@@ -1,16 +1,19 @@
 package com.ua.cabare.services;
 
+import static com.ua.cabare.domain.PayStatus.AWAIT;
+import static com.ua.cabare.domain.PayStatus.PAID;
+import static com.ua.cabare.domain.PayStatus.PREPAID;
+
 import com.ua.cabare.domain.BillCashbackTuple;
 import com.ua.cabare.domain.Money;
+import com.ua.cabare.domain.PayStatus;
 import com.ua.cabare.exceptions.BillNotEnoughPayment;
 import com.ua.cabare.exceptions.BillNotFoundException;
 import com.ua.cabare.exceptions.DishNotFoundException;
 import com.ua.cabare.models.Bill;
 import com.ua.cabare.models.Dish;
 import com.ua.cabare.models.OrderItem;
-import com.ua.cabare.models.PayStatus;
 import com.ua.cabare.repositiries.BillRepository;
-import com.ua.cabare.repositiries.PayStatusRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,9 +28,6 @@ public class BillService {
   private BillRepository billRepository;
   @Autowired
   private DishService dishService;
-
-  @Autowired
-  private PayStatusRepository payStatusRepository;
 
   public void setBillRepository(BillRepository billRepository) {
     this.billRepository = billRepository;
@@ -60,7 +60,7 @@ public class BillService {
     List<OrderItem> resolvedOrders = new ArrayList<>();
     for (OrderItem orderItem : orderItems) {
       Dish dish = orderItem.getDish();
-      if (dish != null) {
+      if (dish != null && dish.getId() != null) {
         Dish dishResolved = dishService.findDish(dish.getId());
         orderItem.setDish(dishResolved);
         resolvedOrders.add(orderItem);
@@ -83,7 +83,7 @@ public class BillService {
       throws BillNotFoundException, BillNotEnoughPayment {
     Bill bill = findBill(billId);
     Money cashback = countCashback(bill);
-    bill.setPayStatus(payStatusRepository.findPayStatusByTitle("PAID"));
+    bill.setPayStatus(PAID);
     Bill closedBill = billRepository.save(bill);
     return new BillCashbackTuple(closedBill, cashback);
   }
@@ -108,9 +108,9 @@ public class BillService {
     Money totalPayment = bill.getPaid().add(income);
 
     if (totalPayment == Money.ZERO || totalOrderCost.isMoreThan(totalPayment)) {
-      bill.setPayStatus(payStatusRepository.findPayStatusByTitle("AWAIT"));
+      bill.setPayStatus(AWAIT);
     } else {
-      bill.setPayStatus(payStatusRepository.findPayStatusByTitle("PREPAID"));
+      bill.setPayStatus(PREPAID);
     }
     bill.setPaid(totalPayment);
     return bill;

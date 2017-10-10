@@ -1,8 +1,13 @@
 package com.ua.cabare.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ua.cabare.domain.Money;
+import com.ua.cabare.domain.PayStatus;
+import com.ua.cabare.domain.PayType;
+import com.ua.cabare.domain.SaleType;
 import com.ua.cabare.hibernate.custom.types.MoneyConverter;
 
 import java.time.LocalDate;
@@ -13,6 +18,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +27,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,9 +37,11 @@ public class Bill extends EntityManager<Long, Bill> {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "bill_number")
   private int billNumber;
 
+  @JsonFormat(shape = Shape.STRING, pattern = "dd/MM/yyyy")
   @Column(name = "bill_date", columnDefinition = "date")
   private LocalDate billDate;
 
@@ -51,17 +59,17 @@ public class Bill extends EntityManager<Long, Bill> {
   @JoinColumn(name = "discount_id", nullable = true)
   private Discount discount;
 
-  @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "sale_type_id")
+  @Column(name = "sale_type_id")
+  @Enumerated(EnumType.ORDINAL)
   private SaleType saleType;
 
-  @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "pay_type_id")
+  @Column(name = "pay_type_id")
+  @Enumerated(EnumType.ORDINAL)
   private PayType payType;
 
   @JsonIgnore
-  @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "pay_status_id")
+  @Column(name = "pay_status_id")
+  @Enumerated(EnumType.ORDINAL)
   private PayStatus payStatus;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "bill", cascade = CascadeType.ALL)
@@ -191,7 +199,7 @@ public class Bill extends EntityManager<Long, Bill> {
   public Money getOrdersCost() {
     Money cost = Money.ZERO;
     for (OrderItem orderItem : this.getOrderItems()) {
-      cost.add(orderItem.getTotalPrice());
+      cost = cost.add(orderItem.getTotalPrice());
     }
     return cost;
   }

@@ -2,18 +2,15 @@ package com.ua.cabare.repositiries;
 
 import com.ua.cabare.models.Discount;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public class DiscountRepository {
+public interface DiscountRepository extends JpaRepository<Discount, Long> {
 
-  public Discount save(Discount discount) {
-    throw new RuntimeException("Not implemented");
-  }
+  Discount save(Discount discount);
 
-  public Optional<Discount> findByDiscountName(String discountCard) {
-    throw new RuntimeException("Not implemented");
-  }
+  Optional<Discount> findByDiscountCard(String discountCard);
 }
