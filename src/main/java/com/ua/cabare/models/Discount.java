@@ -1,11 +1,13 @@
 package com.ua.cabare.models;
 
 import com.ua.cabare.domain.Money;
+import com.ua.cabare.hibernate.custom.types.MoneyConverter;
 
 import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -42,7 +44,7 @@ public class Discount extends EntityManager<Long, Discount> {
   private LocalDate emitted;
 
   @Column(name = "total_paid")
-  @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
+  @Convert(converter = MoneyConverter.class)
   private Money totalPaid;
 
   @Column(name = "discount_size")

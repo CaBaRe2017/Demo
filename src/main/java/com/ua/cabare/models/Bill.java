@@ -1,22 +1,25 @@
 package com.ua.cabare.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ua.cabare.domain.Money;
-//import com.ua.cabare.domain.PayStatus;
-//import com.ua.cabare.domain.PayType;
-//import com.ua.cabare.domain.SaleType;
+import com.ua.cabare.domain.PayStatus;
+import com.ua.cabare.domain.PayType;
+import com.ua.cabare.domain.SaleType;
+import com.ua.cabare.hibernate.custom.types.MoneyConverter;
 
-import javax.persistence.OneToOne;
-import org.hibernate.annotations.Type;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,44 +37,46 @@ public class Bill extends EntityManager<Long, Bill> {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "bill_number")
   private int billNumber;
 
+  @JsonFormat(shape = Shape.STRING, pattern = "dd/MM/yyyy")
   @Column(name = "bill_date", columnDefinition = "date")
-  private LocalDate billDate;
+  private LocalDateTime billDate;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "employee_id")
   private Employee employee;
 
   @Column(name = "table_number")
-  private int tableNumber;
+  private Integer tableNumber;
 
   @Column(name = "number_of_persons")
-  private int numberOfPersons;
+  private Integer numberOfPersons;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "discount_id", nullable = true)
   private Discount discount;
 
-  @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "sale_type_id")
+  @Column(name = "sale_type_id")
+  @Enumerated(EnumType.ORDINAL)
   private SaleType saleType;
 
-  @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "pay_type_id")
+  @Column(name = "pay_type_id")
+  @Enumerated(EnumType.ORDINAL)
   private PayType payType;
 
   @JsonIgnore
-  @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "pay_status_id")
+  @Column(name = "pay_status_id")
+  @Enumerated(EnumType.ORDINAL)
   private PayStatus payStatus;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "bill", cascade = CascadeType.ALL)
   private List<OrderItem> orderItems;
 
   @JsonProperty(defaultValue = "0")
-  @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
+  @Convert(converter = MoneyConverter.class)
   @Column(name = "money_paid")
   private Money paid;
 
@@ -134,11 +139,11 @@ public class Bill extends EntityManager<Long, Bill> {
     this.billNumber = billNumber;
   }
 
-  public LocalDate getBillDate() {
+  public LocalDateTime getBillDate() {
     return billDate;
   }
 
-  public void setBillDate(LocalDate billDate) {
+  public void setBillDate(LocalDateTime billDate) {
     this.billDate = billDate;
   }
 
@@ -150,19 +155,19 @@ public class Bill extends EntityManager<Long, Bill> {
     this.employee = employee;
   }
 
-  public int getTableNumber() {
+  public Integer getTableNumber() {
     return tableNumber;
   }
 
-  public void setTableNumber(int tableNumber) {
+  public void setTableNumber(Integer tableNumber) {
     this.tableNumber = tableNumber;
   }
 
-  public int getNumberOfPersons() {
+  public Integer getNumberOfPersons() {
     return numberOfPersons;
   }
 
-  public void setNumberOfPersons(int numberOfPersons) {
+  public void setNumberOfPersons(Integer numberOfPersons) {
     this.numberOfPersons = numberOfPersons;
   }
 
@@ -191,10 +196,10 @@ public class Bill extends EntityManager<Long, Bill> {
   }
 
   @JsonIgnore
-  public Money getOrdersCost() {
+  public Money getBillPrice() {
     Money cost = Money.ZERO;
     for (OrderItem orderItem : this.getOrderItems()) {
-      cost.add(orderItem.getTotalPrice());
+      cost = cost.add(orderItem.getTotalPrice());
     }
     return cost;
   }

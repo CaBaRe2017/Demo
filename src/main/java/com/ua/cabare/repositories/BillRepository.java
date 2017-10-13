@@ -1,8 +1,10 @@
 package com.ua.cabare.repositories;
 
+import com.ua.cabare.domain.PayStatus;
 import com.ua.cabare.models.Bill;
-import com.ua.cabare.models.PayStatus;
+import com.ua.cabare.models.Employee;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,14 +17,14 @@ public interface BillRepository extends CrudRepository<Bill, Long> {
 
   Bill save(Bill bill);
 
-  //  @Query("select b from Bill b where b.payStatus != ?1")
   List<Bill> findAllByPayStatusNot(PayStatus payStatus);
 
   List<Bill> findAllByOpened(boolean opened);
 
+  @Query("select b from Bill b where b.opened = true and b.employee = ?1")
+  List<Bill> findByEmployee(Employee employee);
+
   List<Bill> findAllByPayStatus(PayStatus payStatus);
 
   Optional<Bill> findById(long id);
-
-//  List<Bill> findAllByPayStatusNot(PayStatus payStatus);
 }

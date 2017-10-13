@@ -1,51 +1,93 @@
 package com.ua.cabare.controllers;
 
+import static com.ua.cabare.domain.Response.DISCOUNT_CARD;
+import static com.ua.cabare.domain.Response.DISCOUNT_SIZE;
+import static com.ua.cabare.domain.Response.STATUS;
+
+import com.ua.cabare.domain.Money;
+import com.ua.cabare.domain.Response;
 import com.ua.cabare.exceptions.DiscountCardNotFoundException;
-import com.ua.cabare.exceptions.FormatException;
 import com.ua.cabare.models.Discount;
 import com.ua.cabare.services.DiscountService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/disountcard")
+@RequestMapping("/discountcard")
 public class DiscountController {
 
   @Autowired
   private DiscountService discountService;
+  @Autowired
+  private Response response;
 
   @RequestMapping(value = "/emittcard", method = RequestMethod.PUT)
-  public void emittCard(Discount discount) {
-    discountService.emittDiscountCard(discount);
+  public Response emittCard(@RequestBody Discount discount) {
+    try {
+      discountService.emittDiscountCard(discount);
+    } catch (Exception ex) {
+      response.put(STATUS, ex.getMessage());
+    }
+    return response;
   }
 
-  @RequestMapping(value = "/getcard", method = RequestMethod.GET)
-  public Discount getCard(String discountCard) throws DiscountCardNotFoundException {
-    return discountService.getDiscountCard(discountCard);
+  @RequestMapping(value = "/getcard/{discount_card}", method = RequestMethod.GET)
+  public Response getCard(@PathVariable(name = "discount_card") String discountCard) {
+    try {
+      Discount card = discountService.getDiscountCard(discountCard);
+      response.put(DISCOUNT_CARD, card);
+    } catch (DiscountCardNotFoundException ex) {
+      response.put(STATUS, ex.getMessage());
+    }
+    return response;
   }
 
   @RequestMapping(value = "/editsize", method = RequestMethod.POST)
-  public void editCard(String discountCard, int newDiscountSize)
-      throws DiscountCardNotFoundException {
-    discountService.changeDiscountSize(discountCard, newDiscountSize);
+  public Response editCard(@RequestParam(name = "discount_card") String discountCard,
+      @RequestParam(name = "discount_size") int newDiscountSize) {
+    try {
+      discountService.changeDiscountSize(discountCard, newDiscountSize);
+    } catch (DiscountCardNotFoundException ex) {
+      response.put(STATUS, ex.getMessage());
+    }
+    return response;
   }
 
-  @RequestMapping(value = "/getsize", method = RequestMethod.GET)
-  public int getSize(String discountCard) throws DiscountCardNotFoundException {
-    return discountService.getDiscountSize(discountCard);
+  @RequestMapping(value = "/getsize/{discount_card}", method = RequestMethod.GET)
+  public Response getSize(@PathVariable(name = "discount_card") String discountCard) {
+    try {
+      int discountSize = discountService.getDiscountSize(discountCard);
+      response.put(DISCOUNT_SIZE, discountSize);
+    } catch (DiscountCardNotFoundException ex) {
+      response.put(STATUS, ex.getMessage());
+    }
+    return response;
   }
 
   @RequestMapping(value = "/block", method = RequestMethod.POST)
-  public void blockCard(String discountCard) throws DiscountCardNotFoundException {
-    discountService.blockDiscountCard(discountCard);
+  public Response blockCard(@RequestParam(name = "discount_card") String discountCard) {
+    try {
+      discountService.blockDiscountCard(discountCard);
+    } catch (DiscountCardNotFoundException ex) {
+      response.put(STATUS, ex.getMessage());
+    }
+    return response;
   }
 
-  @RequestMapping("/addpayment")
-  public void addPayment(String discountCard, String payment)
-      throws DiscountCardNotFoundException, FormatException {
-    discountService.addPayment(discountCard, payment);
+  @RequestMapping(name = "/addpayment", method = RequestMethod.POST)
+  public Response addPayment(@RequestParam(name = "discount_card") String discountCard,
+      @RequestParam(name = "add_payment") Money payment) {
+    try {
+      discountService.addPayment(discountCard, payment);
+    } catch (DiscountCardNotFoundException ex) {
+      response.put(STATUS, ex.getMessage());
+    }
+    return response;
   }
 }

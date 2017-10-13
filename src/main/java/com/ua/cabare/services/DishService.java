@@ -13,7 +13,7 @@ public class DishService {
   @Autowired
   private DishRepository dishRepository;
 
-  public Dish findDish(long dishId) throws DishNotFoundException {
+  public Dish findDish(Long dishId) throws DishNotFoundException {
     return dishRepository.findById(dishId).orElseThrow(() -> new DishNotFoundException());
   }
 }

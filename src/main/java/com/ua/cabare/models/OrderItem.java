@@ -2,8 +2,12 @@ package com.ua.cabare.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ua.cabare.domain.Money;
+import com.ua.cabare.hibernate.custom.types.MoneyConverter;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "order_items")
@@ -31,8 +34,14 @@ public class OrderItem extends EntityManager<Long, OrderItem> {
   private int quantity;
 
   @Column(name = "total_price")
-  @Type(type = "com.ua.cabare.hibernate.custom.types.MoneyDescriptor")
+  @Convert(converter = MoneyConverter.class)
   private Money totalPrice;
+
+  @Column(name = "comments")
+  private String comments;
+
+  @Column(name = "order_time")
+  private LocalDateTime orderTime;
 
   @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
@@ -42,11 +51,6 @@ public class OrderItem extends EntityManager<Long, OrderItem> {
   public OrderItem() {
   }
 
-  public OrderItem(Dish dish, int quantity, Money cost) {
-    this.dish = dish;
-    this.quantity = quantity;
-    this.totalPrice = cost.multiply(quantity);
-  }
   @Override
   public Long getId() {
     return id;
@@ -57,12 +61,28 @@ public class OrderItem extends EntityManager<Long, OrderItem> {
     this.id = id;
   }
 
+  public LocalDateTime getOrderTime() {
+    return orderTime;
+  }
+
+  public void setOrderTime(LocalDateTime orderTime) {
+    this.orderTime = orderTime;
+  }
+
   public Dish getDish() {
     return dish;
   }
 
   public void setDish(Dish dish) {
     this.dish = dish;
+  }
+
+  public String getComments() {
+    return comments;
+  }
+
+  public void setComments(String comments) {
+    this.comments = comments;
   }
 
   public int getQuantity() {
@@ -74,6 +94,9 @@ public class OrderItem extends EntityManager<Long, OrderItem> {
   }
 
   public Money getTotalPrice() {
+    if (totalPrice == null) {
+      totalPrice = dish.getPrice().multiply(quantity);
+    }
     return totalPrice;
   }
 
