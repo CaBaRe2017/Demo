@@ -9,6 +9,7 @@ import com.ua.cabare.domain.Money;
 import com.ua.cabare.domain.PayStatus;
 import com.ua.cabare.domain.Response;
 import com.ua.cabare.exceptions.BillException;
+import com.ua.cabare.exceptions.BillNotFoundException;
 import com.ua.cabare.exceptions.DishException;
 import com.ua.cabare.models.Bill;
 import com.ua.cabare.models.Discount;
@@ -68,7 +69,7 @@ public class BillController {
     try {
       Bill bill = billService.updateBill(billId, orderItems);
       response.put(BILL, bill);
-    } catch (BillException | DishException ex) {
+    } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
     return response;
@@ -79,19 +80,29 @@ public class BillController {
     try {
       Bill bill = billService.addPayment(billId, income);
       response.put(BILL, bill);
-    } catch (BillException ex) {
+    } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
     return response;
   }
 
-  @RequestMapping(value = "/close", method = RequestMethod.POST)
-  public Response closeBill(@RequestParam long id, @RequestParam Discount discount) {
+  @RequestMapping(value = "/preclose", method = RequestMethod.POST)
+  public Response closeBill(@RequestParam Long id, @RequestParam Discount discount) {
     try {
-      Bill bill = billService.closeBill(id, discount);
+      Bill bill = billService.preCloseBill(id, discount);
       response.put(BILL, bill);
       Money billPrice = bill.getBillPrice();
       response.put(BILL_PRICE, billPrice);
+    } catch (Exception ex) {
+      response.put(STATUS, ex.getMessage());
+    }
+    return response;
+  }
+
+  @RequestMapping(value = "/payoff", method = RequestMethod.POST)
+  public Response payOff(@RequestParam("bill_id") Long billId) {
+    try {
+      billService.payOff(billId);
     } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
@@ -120,8 +131,12 @@ public class BillController {
 
   @RequestMapping(value = "/all/{paystatus}")
   public Response getBillsByPayStatus(@PathVariable(name = "paystatus") PayStatus payStatus) {
-    List<Bill> bills = billService.getBillsByPayStatus(payStatus);
-    response.put(BILL_LIST, bills);
+    try {
+      List<Bill> bills = billService.getBillsByPayStatus(payStatus);
+      response.put(BILL_LIST, bills);
+    } catch (Exception ex) {
+      response.put(STATUS, ex.getMessage());
+    }
     return response;
   }
 }

@@ -4,14 +4,16 @@ import static com.ua.cabare.domain.PayStatus.AWAIT;
 import static com.ua.cabare.domain.PayStatus.PAID;
 import static com.ua.cabare.domain.PayStatus.PREPAID;
 
-import com.ua.cabare.domain.BillCashbackTuple;
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.domain.PayStatus;
-import com.ua.cabare.exceptions.BillNotEnoughPayment;
 import com.ua.cabare.exceptions.BillNotFoundException;
+import com.ua.cabare.exceptions.DiscountCardNotFoundException;
 import com.ua.cabare.exceptions.DishNotFoundException;
+import com.ua.cabare.exceptions.EmployeeNotFoundException;
 import com.ua.cabare.models.Bill;
+import com.ua.cabare.models.Discount;
 import com.ua.cabare.models.Dish;
+import com.ua.cabare.models.Employee;
 import com.ua.cabare.models.OrderItem;
 import com.ua.cabare.repositiries.BillRepository;
 
@@ -28,31 +30,104 @@ public class BillService {
   private BillRepository billRepository;
   @Autowired
   private DishService dishService;
+  @Autowired
+  private DiscountService discountService;
+  @Autowired
+  private SecurityService securityService;
+  @Autowired
+  private TimeService timeService;
 
-  public void setBillRepository(BillRepository billRepository) {
-    this.billRepository = billRepository;
-  }
-
-  public void setDishService(DishService dishService) {
-    this.dishService = dishService;
-  }
-
-  public Bill openBill(Bill bill, Money income) throws DishNotFoundException {
-    bill = changePayStatus(bill, income);
-    List<OrderItem> orderItems = resolveDishesInOrders(bill.getOrderItems());
-    bill.setOrderItems(orderItems);
+  public Bill openBill(Bill bill) throws EmployeeNotFoundException {
+    bill.setEmployee(securityService.getEmployeeFromSession());
+    bill.setBillDate(timeService.getCurrentTime());
+    bill.setOpened(true);
     return billRepository.save(bill);
   }
 
-  public void updateBill(long billId, List<OrderItem> orderItems)
+  public Bill updateBill(long billId, List<OrderItem> orderItems)
       throws BillNotFoundException, DishNotFoundException {
-    Bill bill = findBill(billId);
-    orderItems = resolveDishesInOrders(orderItems);
     if (orderItems.isEmpty()) {
-      return;
+      throw new RuntimeException("empty order list");
     }
-    bill.getOrderItems().addAll(orderItems);
+    Bill billStored = findBill(billId);
+    orderItems = resolveDishesInOrders(orderItems);
+    for (OrderItem orderItem : orderItems) {
+      orderItem.setOrderTime(timeService.getCurrentTime());
+    }
+    for (OrderItem orderItem : orderItems) {
+      orderItem.setTotalPrice(orderItem.getTotalPrice());
+    }
+    billStored.getOrderItems().addAll(orderItems);
+    return billRepository.save(billStored);
+  }
+
+  public Bill updateBill(Bill bill) throws BillNotFoundException {
+    Bill billStored = findBill(bill.getId());
+    if (bill.getTableNumber() != null) {
+      billStored.setTableNumber(bill.getTableNumber());
+    }
+    if (bill.getNumberOfPersons() != null) {
+      billStored.setNumberOfPersons(bill.getNumberOfPersons());
+    }
+    if (bill.getSaleType() != null) {
+      billStored.setPayType(bill.getPayType());
+    }
+    if (bill.getDiscount() != null) {
+      billStored.setDiscount(bill.getDiscount());
+    }
+    return billRepository.save(billStored);
+  }
+
+  public Bill preCloseBill(Long billId, Discount discount)
+      throws BillNotFoundException, DiscountCardNotFoundException {
+    Bill bill = findBill(billId);
+    discount = resolveDiscount(discount);
+    bill.setDiscount(discount);
+    bill.setPayStatus(AWAIT);
+    Bill preClosedBill = billRepository.save(bill);
+    return preClosedBill;
+  }
+
+  public void payOff(Long billId) throws BillNotFoundException {
+    Bill bill = findBill(billId);
+    if (bill.getPayStatus() != AWAIT) {
+      throw new RuntimeException("preclose before");
+    }
+    bill.setOpened(false);
+    bill.setPayStatus(PAID);
     billRepository.save(bill);
+  }
+
+  public Bill addPayment(long billId, Money income) throws BillNotFoundException {
+    Bill bill = findBill(billId);
+    bill.setPayStatus(PREPAID);
+    bill.addPayment(income);
+    return billRepository.save(bill);
+  }
+
+  public List<Bill> getOpened() throws EmployeeNotFoundException {
+    Employee employee = securityService.getEmployeeFromSession();
+    return billRepository.findByEmployee(employee);
+  }
+
+  public List<Bill> getOpenedAll() {
+    return billRepository.findAllByOpened(true);
+  }
+
+  public List<Bill> getBillsByPayStatus(PayStatus payStatus) {
+    return billRepository.findAllByPayStatus(payStatus);
+  }
+
+
+  private Discount resolveDiscount(Discount discount)
+      throws DiscountCardNotFoundException {
+    if (discount.getId() != null) {
+      return discountService.getById(discount.getId());
+    }
+    if (discount.getDiscountCard() != null) {
+      return discountService.getDiscountCard(discount.getDiscountCard());
+    }
+    throw new DiscountCardNotFoundException();
   }
 
   private List<OrderItem> resolveDishesInOrders(List<OrderItem> orderItems)
@@ -69,61 +144,8 @@ public class BillService {
     return resolvedOrders;
   }
 
-  public void updateBill(long billId, int table) throws BillNotFoundException {
-    Bill bill = findBill(billId);
-    bill.setTableNumber(table);
-    billRepository.save(bill);
-  }
-
   private Bill findBill(long id) throws BillNotFoundException {
     return billRepository.findById(id).orElseThrow(() -> new BillNotFoundException());
-  }
-
-  public BillCashbackTuple closeBill(long billId)
-      throws BillNotFoundException, BillNotEnoughPayment {
-    Bill bill = findBill(billId);
-    Money cashback = countCashback(bill);
-    bill.setPayStatus(PAID);
-    Bill closedBill = billRepository.save(bill);
-    return new BillCashbackTuple(closedBill, cashback);
-  }
-
-  public void addPayment(long billId, Money income) throws BillNotFoundException {
-    Bill bill = findBill(billId);
-    bill.addPayment(income);
-    billRepository.save(bill);
-  }
-
-  private Money countCashback(Bill bill) throws BillNotEnoughPayment {
-    Money ordersCost = bill.getOrdersCost();
-    Money billMoneyPaid = bill.getPaid();
-    if (ordersCost.isMoreThan(billMoneyPaid)) {
-      throw new BillNotEnoughPayment();
-    }
-    return billMoneyPaid.subtract(ordersCost);
-  }
-
-  private Bill changePayStatus(Bill bill, Money income) {
-    Money totalOrderCost = bill.getOrdersCost();
-    Money totalPayment = bill.getPaid().add(income);
-
-    if (totalPayment == Money.ZERO || totalOrderCost.isMoreThan(totalPayment)) {
-      bill.setPayStatus(AWAIT);
-    } else {
-      bill.setPayStatus(PREPAID);
-    }
-    bill.setPaid(totalPayment);
-    return bill;
-  }
-
-  ///////////////////////
-  public List<Bill> getOpenedBills() {
-    return billRepository.findAllByOpened(true);
-  }
-
-
-  public List<Bill> getBillsByPayStatus(PayStatus payStatus) {
-    return billRepository.findAllByPayStatus(payStatus);
   }
 }
 
