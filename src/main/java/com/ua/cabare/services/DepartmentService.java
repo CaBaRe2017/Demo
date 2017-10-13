@@ -1,7 +1,7 @@
 package com.ua.cabare.services;
 
 import com.ua.cabare.models.Department;
-import com.ua.cabare.repositiries.DepartmentRepository;
+import com.ua.cabare.repositories.DepartmentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

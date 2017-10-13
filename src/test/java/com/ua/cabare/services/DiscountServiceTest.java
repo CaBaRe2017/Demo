@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.models.Discount;
-import com.ua.cabare.repositiries.DiscountRepository;
+import com.ua.cabare.repositories.DiscountRepository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
