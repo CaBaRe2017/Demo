@@ -20,6 +20,10 @@ public class DiscountService {
     return true;
   }
 
+  public Discount getById(Long id) throws DiscountCardNotFoundException {
+    return discountRepository.findById(id).orElseThrow(() -> new DiscountCardNotFoundException());
+  }
+
   public Discount getDiscountCard(String discountCard) throws DiscountCardNotFoundException {
     return findDiscountCard(discountCard);
   }

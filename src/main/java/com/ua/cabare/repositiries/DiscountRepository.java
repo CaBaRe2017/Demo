@@ -13,4 +13,6 @@ public interface DiscountRepository extends JpaRepository<Discount, Long> {
   Discount save(Discount discount);
 
   Optional<Discount> findByDiscountCard(String discountCard);
+
+  Optional<Discount> findById(Long id);
 }
