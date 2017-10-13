@@ -10,7 +10,7 @@ import com.ua.cabare.domain.PayType;
 import com.ua.cabare.domain.SaleType;
 import com.ua.cabare.hibernate.custom.types.MoneyConverter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,17 +43,17 @@ public class Bill extends EntityManager<Long, Bill> {
 
   @JsonFormat(shape = Shape.STRING, pattern = "dd/MM/yyyy")
   @Column(name = "bill_date", columnDefinition = "date")
-  private LocalDate billDate;
+  private LocalDateTime billDate;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "employee_id")
   private Employee employee;
 
   @Column(name = "table_number")
-  private int tableNumber;
+  private Integer tableNumber;
 
   @Column(name = "number_of_persons")
-  private int numberOfPersons;
+  private Integer numberOfPersons;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "discount_id", nullable = true)
@@ -139,11 +139,11 @@ public class Bill extends EntityManager<Long, Bill> {
     this.billNumber = billNumber;
   }
 
-  public LocalDate getBillDate() {
+  public LocalDateTime getBillDate() {
     return billDate;
   }
 
-  public void setBillDate(LocalDate billDate) {
+  public void setBillDate(LocalDateTime billDate) {
     this.billDate = billDate;
   }
 
@@ -155,19 +155,19 @@ public class Bill extends EntityManager<Long, Bill> {
     this.employee = employee;
   }
 
-  public int getTableNumber() {
+  public Integer getTableNumber() {
     return tableNumber;
   }
 
-  public void setTableNumber(int tableNumber) {
+  public void setTableNumber(Integer tableNumber) {
     this.tableNumber = tableNumber;
   }
 
-  public int getNumberOfPersons() {
+  public Integer getNumberOfPersons() {
     return numberOfPersons;
   }
 
-  public void setNumberOfPersons(int numberOfPersons) {
+  public void setNumberOfPersons(Integer numberOfPersons) {
     this.numberOfPersons = numberOfPersons;
   }
 
@@ -196,7 +196,7 @@ public class Bill extends EntityManager<Long, Bill> {
   }
 
   @JsonIgnore
-  public Money getOrdersCost() {
+  public Money getBillPrice() {
     Money cost = Money.ZERO;
     for (OrderItem orderItem : this.getOrderItems()) {
       cost = cost.add(orderItem.getTotalPrice());
