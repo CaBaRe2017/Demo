@@ -201,7 +201,7 @@ public class Bill extends EntityManager<Long, Bill> {
     for (OrderItem orderItem : this.getOrderItems()) {
       cost = cost.add(orderItem.getTotalPrice());
     }
-    return cost;
+    return cost.multiply(discount.getDiscountSize() / 100f);
   }
 
   public void addPayment(Money payment) {
