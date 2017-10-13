@@ -2,18 +2,17 @@ package com.ua.cabare.controllers;
 
 import static com.ua.cabare.domain.Response.BILL;
 import static com.ua.cabare.domain.Response.BILL_LIST;
-import static com.ua.cabare.domain.Response.CASHBACK;
+import static com.ua.cabare.domain.Response.BILL_PRICE;
 import static com.ua.cabare.domain.Response.STATUS;
 
-import com.ua.cabare.domain.BillCashbackTuple;
 import com.ua.cabare.domain.Money;
+import com.ua.cabare.domain.PayStatus;
 import com.ua.cabare.domain.Response;
 import com.ua.cabare.exceptions.BillException;
 import com.ua.cabare.exceptions.DishException;
-import com.ua.cabare.exceptions.DishNotFoundException;
 import com.ua.cabare.models.Bill;
+import com.ua.cabare.models.Discount;
 import com.ua.cabare.models.OrderItem;
-import com.ua.cabare.domain.PayStatus;
 import com.ua.cabare.services.BillService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +43,21 @@ public class BillController {
   }
 
   @RequestMapping(value = "/open", method = RequestMethod.PUT)
-  public Response openBill(@RequestBody Bill bill, @RequestParam Money income) {
+  public Response openBill(@RequestBody Bill bill) {
     try {
-      bill = billService.openBill(bill, income);
+      bill = billService.openBill(bill);
       response.put(BILL, bill);
-    } catch (DishNotFoundException ex) {
+    } catch (Exception ex) {
+      response.put(STATUS, ex.getMessage());
+    }
+    return response;
+  }
+
+  @RequestMapping(value = "/update", method = RequestMethod.POST)
+  public Response updateBill(@RequestBody Bill bill) {
+    try {
+      Bill updatedBill = billService.updateBill(bill);
+    } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
     return response;
@@ -57,7 +66,8 @@ public class BillController {
   @RequestMapping(value = "/add/orderitems", method = RequestMethod.PUT)
   public Response addOrder(@RequestParam long billId, @RequestParam List<OrderItem> orderItems) {
     try {
-      billService.updateBill(billId, orderItems);
+      Bill bill = billService.updateBill(billId, orderItems);
+      response.put(BILL, bill);
     } catch (BillException | DishException ex) {
       response.put(STATUS, ex.getMessage());
     }
@@ -67,39 +77,44 @@ public class BillController {
   @RequestMapping(value = "/add/payment", method = RequestMethod.PUT)
   public Response addPayment(@RequestParam long billId, @RequestParam Money income) {
     try {
-      billService.addPayment(billId, income);
+      Bill bill = billService.addPayment(billId, income);
+      response.put(BILL, bill);
     } catch (BillException ex) {
       response.put(STATUS, ex.getMessage());
     }
     return response;
   }
 
-  @RequestMapping(value = "/change/table", method = RequestMethod.PUT)
-  public Response changeTable(@RequestParam long billId, @RequestParam int table) {
+  @RequestMapping(value = "/close", method = RequestMethod.POST)
+  public Response closeBill(@RequestParam long id, @RequestParam Discount discount) {
     try {
-      billService.updateBill(billId, table);
-    } catch (BillException ex) {
+      Bill bill = billService.closeBill(id, discount);
+      response.put(BILL, bill);
+      Money billPrice = bill.getBillPrice();
+      response.put(BILL_PRICE, billPrice);
+    } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
     return response;
   }
 
-  @RequestMapping(value = "/close/{id}")
-  public Response closeBill(long id) {
-    BillCashbackTuple billCashbackTuple = null;
+  @RequestMapping(value = "/opened")
+  public Response getOpened() {
     try {
-      billCashbackTuple = billService.closeBill(id);
-      response.put(BILL, billCashbackTuple.bill);
-      response.put(CASHBACK, billCashbackTuple.cashback);
-    } catch (BillException ex) {
+      response.put(BILL_LIST, billService.getOpened());
+    } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
     return response;
   }
 
   @RequestMapping(value = "/all/opened")
-  public Response geAllOpenedBills() {
-    response.put(BILL_LIST, billService.getOpenedBills());
+  public Response getOpenedAll() {
+    try {
+      response.put(BILL_LIST, billService.getOpenedAll());
+    } catch (Exception ex) {
+      response.put(STATUS, ex.getMessage());
+    }
     return response;
   }
 
