@@ -70,7 +70,11 @@ public class Employee extends EntityManager<Long, Employee> {
   @Column(name = "phone")
   private String phone;
 
+  @Column(name = "enabled")
+  private boolean enabled;
+
   public Employee() {
+    this.enabled = false;
   }
 
   public Employee(Employee employee) {
@@ -88,6 +92,7 @@ public class Employee extends EntityManager<Long, Employee> {
     this.email = employee.getEmail();
     this.birthday = employee.getBirthday();
     this.phone = employee.getPhone();
+    this.enabled = false;
   }
 
   @Override
@@ -202,6 +207,14 @@ public class Employee extends EntityManager<Long, Employee> {
 
   public void setPhone(String phone) {
     this.phone = phone;
+  }
+
+  public boolean isEnabled() {
+    return enabled;
+  }
+
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
   }
 }
 

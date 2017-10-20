@@ -3,6 +3,7 @@ package com.ua.cabare.security.service;
 import com.ua.cabare.models.Employee;
 import com.ua.cabare.models.Role;
 import com.ua.cabare.repositories.EmployeeRepository;
+import com.ua.cabare.security.model.Privilege;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,7 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service("userDetailsService")
+@Service
 public class EmployeeDetailsService implements UserDetailsService {
 
   @Autowired
@@ -40,11 +41,27 @@ public class EmployeeDetailsService implements UserDetailsService {
     }
   }
 
-  private List<GrantedAuthority> getAuthorities(Set<Role> roles) {
-    List<GrantedAuthority> roleList = new ArrayList<>();
-    for (Role role: roles){
-      roleList.add(new SimpleGrantedAuthority(role.getName()));
+  private Collection<? extends GrantedAuthority> getAuthorities(Set<Role> roles) {
+    return getGrantedAthorities(getPrivileges(roles));
+  }
+
+  private List<String> getPrivileges(Set<Role> roles) {
+    List<String> privileges = new ArrayList<>();
+    List<Privilege> collection = new ArrayList<>();
+    for (Role role: roles) {
+      collection.addAll(role.getPrivileges());
     }
-    return roleList;
+    for (Privilege privilege: collection) {
+      privileges.add(privilege.getName());
+    }
+    return privileges;
+  }
+
+  private List<GrantedAuthority> getGrantedAthorities (List<String> privileges){
+    List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+    for (String privilege: privileges) {
+      grantedAuthorities.add(new SimpleGrantedAuthority(privilege));
+    }
+    return grantedAuthorities;
   }
 }

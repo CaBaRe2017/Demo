@@ -1,9 +1,12 @@
 package com.ua.cabare.configurations;
 
 import com.ua.cabare.repositories.EmployeeRepository;
+import com.ua.cabare.security.authentication.CabareAuthenticationSuccessHandler;
+import com.ua.cabare.security.dto.ActiveEmployees;
 import com.ua.cabare.security.service.EmployeeDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,7 +14,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -25,6 +33,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
+  @Autowired
+  private AuthenticationSuccessHandler cabareAuthenticationSuccessHandler;
+
+  private AuthenticationFailureHandler failureHandler;
+
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(employeeDetailsService).passwordEncoder(passwordEncoder);
@@ -35,16 +48,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     http
         .csrf().disable()
         .authorizeRequests()
-          .antMatchers("/login*", "/logout*", "/employee/registration*", "/registration*").permitAll()
+          .antMatchers("/login*", "/logout*", "/registration/employee*", "/registration*",
+              "/registration/confirm*").permitAll()
           .antMatchers("/invalidSession*").anonymous()
           //.antMatchers("/employee/updatePassword*","/employee/savePassword*","/updatePassword*").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
-          //.anyRequest().hasAuthority("READ_PRIVILEGE")
-          .anyRequest().authenticated()
+          .anyRequest().hasAuthority("READ_PRIVILEGE")
           .and()
         .formLogin()
           .loginPage("/login")
           .defaultSuccessUrl("/index.html")
           .failureUrl("/login?error=true")
+          .successHandler(cabareAuthenticationSuccessHandler)
         .permitAll()
         .and()
           .logout()
@@ -54,20 +68,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .permitAll();
   }
 
-  /*private PasswordEncoder getPasswordEncoder() {
-    return new PasswordEncoder() {
-      @Override
-      public String encode(CharSequence charSequence) {
-        return charSequence.toString();
-      }
-
-      @Override
-      public boolean matches(CharSequence charSequence, String s) {
-        return true;
-      }
-    };
+  @Bean
+  public PasswordEncoder passwordEncoder(){
+    return new BCryptPasswordEncoder(11);
   }
-*/
+
+  @Bean
+  public ActiveEmployees activeEmployees() {
+    return new ActiveEmployees();
+  }
+
+  @Bean
+  public RedirectStrategy redirectStrategy() {
+    return new DefaultRedirectStrategy();
+  }
+
+  @Bean
+  public AuthenticationSuccessHandler authenticationSuccessHandler () {
+    return new CabareAuthenticationSuccessHandler();
+  }
+
+
   /*@Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
     auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("select e.login as username,"

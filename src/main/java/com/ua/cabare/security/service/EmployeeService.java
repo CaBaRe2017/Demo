@@ -12,4 +12,10 @@ public interface EmployeeService {
 
   Employee findEmployeeByEmail(String email);
 */
+ String validateVerificationToken(String token);
+
+ void createVerificationTokenForEmployee(Employee employee, String token);
+
+ Employee getEmployee (String verificationToken);
+
 }
