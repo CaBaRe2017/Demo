@@ -17,6 +17,10 @@ public class Response extends HashMap<String, Object> {
   public static final String DEPARTMENTS = "departments";
   public static final String DEPARTMENT = "department";
   public static final String BILL_PRICE = "bill_price";
+  public static final String DISH = "dish";
+  public static final String DISH_CATEGORY = "dish_category";
+  public static final String DISH_CATEGORY_LIST = "dish_category_list";
+
 
   public Response() {
     put(STATUS, "ok");

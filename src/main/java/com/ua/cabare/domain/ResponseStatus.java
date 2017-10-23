@@ -7,4 +7,5 @@ public class ResponseStatus {
   public static final String DISH_NOT_FOUND = "DISH_NOT_FOUND";
   public static final String DISCOUNT_CARD_NOT_FOUND = "DISCOUNT_CARD_NOT_FOUND";
   public static final String EMPLOYEE_NOT_FOUND = "EMPLOYEE_NOT_FOUND";
+  public static final String DISH_CATEGORY_NOT_FOUND = "DISH_CATEGORY_NOT_FOUND";
 }
