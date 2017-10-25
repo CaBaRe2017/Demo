@@ -4,7 +4,9 @@ import static com.ua.cabare.domain.PayStatus.AWAIT;
 import static com.ua.cabare.domain.PayStatus.PAID;
 import static com.ua.cabare.domain.PayStatus.PREPAID;
 import static com.ua.cabare.domain.ResponseStatus.BILL_NOT_FOUND;
+import static com.ua.cabare.domain.ResponseStatus.BILL_NOT_SPECIFIED;
 import static com.ua.cabare.domain.ResponseStatus.DISCOUNT_CARD_NOT_FOUND;
+import static com.ua.cabare.domain.ResponseStatus.EMPTY_ORDER_LIST;
 
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.domain.PayStatus;
@@ -44,7 +46,7 @@ public class BillService {
 
   public Bill updateBill(long billId, List<OrderItem> orderItems) {
     if (orderItems.isEmpty()) {
-      throw new RuntimeException("empty order list");
+      throw new RuntimeException(EMPTY_ORDER_LIST);
     }
     Bill billStored = findBill(billId);
     orderItems = resolveDishesInOrders(orderItems);
@@ -59,7 +61,11 @@ public class BillService {
   }
 
   public Bill updateBill(Bill bill) {
-    Bill billStored = findBill(bill.getId());
+    Long id = bill.getId();
+    if (id == null) {
+      throw new RuntimeException(BILL_NOT_SPECIFIED);
+    }
+    Bill billStored = findBill(id);
     if (bill.getTableNumber() != null) {
       billStored.setTableNumber(bill.getTableNumber());
     }
