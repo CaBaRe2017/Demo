@@ -1,7 +1,9 @@
 package com.ua.cabare.services;
 
+import static com.ua.cabare.domain.ResponseStatus.DISH_CATEGORY_NOT_FOUND;
+import static com.ua.cabare.domain.ResponseStatus.DISH_CATEGORY_NOT_SPECIFIED;
+
 import com.ua.cabare.domain.Utils;
-import com.ua.cabare.exceptions.DishCategoryNotFoundException;
 import com.ua.cabare.models.DishCategory;
 import com.ua.cabare.repositiries.DishCategoryRepository;
 
@@ -19,7 +21,7 @@ public class DishCategoryService {
 
   public DishCategory findById(Long id) {
     return dishCategoryRepository.findById(id)
-        .orElseThrow(() -> new DishCategoryNotFoundException());
+        .orElseThrow(() -> new RuntimeException(DISH_CATEGORY_NOT_FOUND));
   }
 
   public DishCategory addNew(DishCategory dishCategory) {
@@ -32,8 +34,11 @@ public class DishCategoryService {
   }
 
   public DishCategory update(DishCategory dishCategory) {
-    DishCategory dishCategoryStored = dishCategoryRepository.findById(dishCategory.getId())
-        .orElseThrow(() -> new DishCategoryNotFoundException());
+    Long id = dishCategory.getId();
+    if (id == null) {
+      throw new RuntimeException(DISH_CATEGORY_NOT_SPECIFIED);
+    }
+    DishCategory dishCategoryStored = findById(id);
     DishCategory dishCategoryUpdated = Utils.updateState(dishCategoryStored, dishCategory);
     return dishCategoryRepository.save(dishCategoryUpdated);
   }

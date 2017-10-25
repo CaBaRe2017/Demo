@@ -3,13 +3,11 @@ package com.ua.cabare.services;
 import static com.ua.cabare.domain.PayStatus.AWAIT;
 import static com.ua.cabare.domain.PayStatus.PAID;
 import static com.ua.cabare.domain.PayStatus.PREPAID;
+import static com.ua.cabare.domain.ResponseStatus.BILL_NOT_FOUND;
+import static com.ua.cabare.domain.ResponseStatus.DISCOUNT_CARD_NOT_FOUND;
 
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.domain.PayStatus;
-import com.ua.cabare.exceptions.BillNotFoundException;
-import com.ua.cabare.exceptions.DiscountCardNotFoundException;
-import com.ua.cabare.exceptions.DishNotFoundException;
-import com.ua.cabare.exceptions.EmployeeNotFoundException;
 import com.ua.cabare.models.Bill;
 import com.ua.cabare.models.Discount;
 import com.ua.cabare.models.Dish;
@@ -37,15 +35,14 @@ public class BillService {
   @Autowired
   private TimeService timeService;
 
-  public Bill openBill(Bill bill) throws EmployeeNotFoundException {
+  public Bill openBill(Bill bill) {
     bill.setEmployee(securityService.getEmployeeFromSession());
     bill.setBillDate(timeService.getCurrentTime());
     bill.setOpened(true);
     return billRepository.save(bill);
   }
 
-  public Bill updateBill(long billId, List<OrderItem> orderItems)
-      throws BillNotFoundException, DishNotFoundException {
+  public Bill updateBill(long billId, List<OrderItem> orderItems) {
     if (orderItems.isEmpty()) {
       throw new RuntimeException("empty order list");
     }
@@ -61,7 +58,7 @@ public class BillService {
     return billRepository.save(billStored);
   }
 
-  public Bill updateBill(Bill bill) throws BillNotFoundException {
+  public Bill updateBill(Bill bill) {
     Bill billStored = findBill(bill.getId());
     if (bill.getTableNumber() != null) {
       billStored.setTableNumber(bill.getTableNumber());
@@ -78,8 +75,7 @@ public class BillService {
     return billRepository.save(billStored);
   }
 
-  public Bill preCloseBill(Long billId, Discount discount)
-      throws BillNotFoundException, DiscountCardNotFoundException {
+  public Bill preCloseBill(Long billId, Discount discount) {
     Bill bill = findBill(billId);
     discount = resolveDiscount(discount);
     bill.setDiscount(discount);
@@ -88,7 +84,7 @@ public class BillService {
     return preClosedBill;
   }
 
-  public void payOff(Long billId) throws BillNotFoundException {
+  public void payOff(Long billId) {
     Bill bill = findBill(billId);
     if (bill.getPayStatus() != AWAIT) {
       throw new RuntimeException("preclose before");
@@ -98,14 +94,14 @@ public class BillService {
     billRepository.save(bill);
   }
 
-  public Bill addPayment(long billId, Money income) throws BillNotFoundException {
+  public Bill addPayment(long billId, Money income) {
     Bill bill = findBill(billId);
     bill.setPayStatus(PREPAID);
     bill.addPayment(income);
     return billRepository.save(bill);
   }
 
-  public List<Bill> getOpened() throws EmployeeNotFoundException {
+  public List<Bill> getOpened() {
     Employee employee = securityService.getEmployeeFromSession();
     return billRepository.findByEmployee(employee);
   }
@@ -119,19 +115,17 @@ public class BillService {
   }
 
 
-  private Discount resolveDiscount(Discount discount)
-      throws DiscountCardNotFoundException {
+  private Discount resolveDiscount(Discount discount) {
     if (discount.getId() != null) {
       return discountService.getById(discount.getId());
     }
     if (discount.getDiscountCard() != null) {
       return discountService.getDiscountCard(discount.getDiscountCard());
     }
-    throw new DiscountCardNotFoundException();
+    throw new RuntimeException(DISCOUNT_CARD_NOT_FOUND);
   }
 
-  private List<OrderItem> resolveDishesInOrders(List<OrderItem> orderItems)
-      throws DishNotFoundException {
+  private List<OrderItem> resolveDishesInOrders(List<OrderItem> orderItems) {
     List<OrderItem> resolvedOrders = new ArrayList<>();
     for (OrderItem orderItem : orderItems) {
       Dish dish = orderItem.getDish();
@@ -144,8 +138,8 @@ public class BillService {
     return resolvedOrders;
   }
 
-  private Bill findBill(long id) throws BillNotFoundException {
-    return billRepository.findById(id).orElseThrow(() -> new BillNotFoundException());
+  private Bill findBill(long id) {
+    return billRepository.findById(id).orElseThrow(() -> new RuntimeException(BILL_NOT_FOUND));
   }
 }
 
