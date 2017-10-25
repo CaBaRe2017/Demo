@@ -9,13 +9,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "dish_category")
-public class DishCategory extends EntityManager<Long, DishCategory>{
+public class DishCategory extends EntityManager<Long, DishCategory> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "title")
+  @Column(name = "title", unique = true)
   private String title;
 
   @Override
