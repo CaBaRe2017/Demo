@@ -1,5 +1,7 @@
 package com.ua.cabare.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.hibernate.custom.types.MoneyConverter;
 
@@ -29,13 +31,16 @@ public class Dish extends EntityManager<Long, Dish> {
   @Column(name = "name")
   private String name;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "dish")
   private List<Calculation> calculations;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "dish")
   private Set<OrderItem> orderItems;
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @JsonProperty("dish_category")
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "dish_category_id")
   private DishCategory dishCategory;
 
