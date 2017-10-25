@@ -51,4 +51,9 @@ public class DishService {
   public List<Dish> getDishes(Pageable pageable) {
     return dishRepository.streamAllPaged(pageable);
   }
+
+  public List<Dish> getDishesByCategory(Long dishCategoryId, Pageable pageable) {
+    DishCategory category = dishCategoryService.findById(dishCategoryId);
+    return dishRepository.getDishesByDishCategory(category, pageable);
+  }
 }

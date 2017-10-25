@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -53,6 +54,17 @@ public class DishController {
     try {
       List<Dish> dishes = dishService.getDishes(pageable);
       response.put(DISH_LIST, dishes);
+    } catch (Exception ex) {
+      response.put(STATUS, ex.getMessage());
+    }
+    return response;
+  }
+
+  @RequestMapping(value = "/get_by_category")
+  public Response getByCategory(@RequestParam(name = "id") Long dishCategoryId, Pageable pageable) {
+    try {
+      List<Dish> dishesByCategory = dishService.getDishesByCategory(dishCategoryId, pageable);
+      response.put(DISH_LIST, dishesByCategory);
     } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
