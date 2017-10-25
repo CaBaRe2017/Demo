@@ -7,7 +7,6 @@ import com.ua.cabare.repositiries.DishCategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +16,11 @@ public class DishCategoryService {
 
   @Autowired
   private DishCategoryRepository dishCategoryRepository;
+
+  public DishCategory findById(Long id) {
+    return dishCategoryRepository.findById(id)
+        .orElseThrow(() -> new DishCategoryNotFoundException());
+  }
 
   public DishCategory addNew(DishCategory dishCategory) {
     dishCategory.setId(null);
