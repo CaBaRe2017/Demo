@@ -41,7 +41,7 @@ public class Bill extends EntityManager<Long, Bill> {
   @Column(name = "bill_number")
   private int billNumber;
 
-  @JsonFormat(shape = Shape.STRING, pattern = "dd/MM/yyyy")
+  @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
   @Column(name = "bill_date", columnDefinition = "date")
   private LocalDateTime billDate;
 

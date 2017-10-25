@@ -1,5 +1,6 @@
 package com.ua.cabare.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.hibernate.custom.types.MoneyConverter;
 
@@ -15,7 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "discounts")
@@ -37,9 +37,11 @@ public class Discount extends EntityManager<Long, Discount> {
   @Column(name = "gender")
   private String gender;
 
+  @JsonFormat(pattern = "dd-MM-yyyy")
   @Column(name = "birthday", columnDefinition = "date")
   private LocalDate birthday;
 
+  @JsonFormat(pattern = "dd-MM-yyyy")
   @Column(name = "emitted", columnDefinition = "date")
   private LocalDate emitted;
 
