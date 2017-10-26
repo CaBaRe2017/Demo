@@ -1,6 +1,8 @@
 package com.ua.cabare.configurations;
 
 import com.ua.cabare.repositories.EmployeeRepository;
+import com.ua.cabare.repositories.PrivilegeRepository;
+import com.ua.cabare.repositories.RoleRepository;
 import com.ua.cabare.security.authentication.CabareAuthenticationSuccessHandler;
 import com.ua.cabare.security.dto.ActiveEmployees;
 import com.ua.cabare.security.service.EmployeeDetailsService;
@@ -18,12 +20,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
-@EnableJpaRepositories(basePackageClasses = {EmployeeRepository.class})
+@EnableJpaRepositories(basePackageClasses = {EmployeeRepository.class, RoleRepository.class,
+    PrivilegeRepository.class})
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -36,8 +38,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Autowired
   private AuthenticationSuccessHandler cabareAuthenticationSuccessHandler;
 
-  private AuthenticationFailureHandler failureHandler;
-
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(employeeDetailsService).passwordEncoder(passwordEncoder);
@@ -48,14 +48,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     http
         .csrf().disable()
         .authorizeRequests()
-          .antMatchers("/login*", "/logout*", "/registration/employee*", "/registration*",
+          .antMatchers("/login*", "/logout*", "*/registration/employee*", "/registration*",
               "/registration/confirm*").permitAll()
           .antMatchers("/invalidSession*").anonymous()
-          //.antMatchers("/employee/updatePassword*","/employee/savePassword*","/updatePassword*").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
-          .anyRequest().hasAuthority("READ_PRIVILEGE")
+          //.antMatchers("/employee/updatePassword*","/employee/savePassword*","/updatePassword*").hasAuthority("CHANGE_PASSWORD")
+          .anyRequest().hasAuthority("READ")
           .and()
         .formLogin()
-          .loginPage("/login")
+          //.loginPage("/login")
           .defaultSuccessUrl("/index.html")
           .failureUrl("/login?error=true")
           .successHandler(cabareAuthenticationSuccessHandler)

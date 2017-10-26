@@ -40,10 +40,10 @@ public class RolesAndPermissionsDataService implements ApplicationListener<Conte
     List<Privilege> managerPrivileges = Arrays.asList(readPrivilege, changePasswordPrivilege);
     List<Privilege> waiterPrivileges = Arrays.asList(readPrivilege, changePasswordPrivilege);
 
-    createRole("ADMIN", adminPrivileges);
-    createRole("OWNER", ownerPrivileges);
-    createRole("MANAGER", managerPrivileges);
-    createRole("WAITER", waiterPrivileges);
+    createRole("ROLE_ADMIN", adminPrivileges);
+    createRole("ROLE_OWNER", ownerPrivileges);
+    createRole("ROLE_MANAGER", managerPrivileges);
+    createRole("ROLE_WAITER", waiterPrivileges);
 
     alreadyConfigured = true;
   }

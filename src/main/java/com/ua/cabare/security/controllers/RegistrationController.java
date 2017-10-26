@@ -7,7 +7,6 @@ import com.ua.cabare.security.dto.EmployeeDto;
 import com.ua.cabare.security.service.EmployeeServiceImpl;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -16,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,30 +48,25 @@ public class RegistrationController {
   }
 
   @RequestMapping(value = "/confirm", method = RequestMethod.GET)
-  public String registrationConfirm(@RequestParam String token, Model model, WebRequest request)
+  @ResponseBody
+  public GenericResponse registrationConfirm(@RequestParam String token,WebRequest request)
       throws UnsupportedEncodingException {
-    Locale locale = request.getLocale();
     String result = employeeService.validateVerificationToken(token);
     if (result.equals("valid")) {
       Employee employee = employeeService.getEmployee(token);
-      model.addAttribute("message",
-          messageSource.getMessage("message.accountVerified", null, locale));
-      //return "redirect:/login?lang=" + locale.getLanguage();
-      return "redirect:/login";
+      if (employee != null){
+        return new GenericResponse(messageSource.getMessage("message.accountVerified",
+            null, request.getLocale()));
+      }
     }
-    /*model.addAttribute("message",
-        messageSource.getMessage("auth.message." + result, null, locale));*/
-    model.addAttribute("expired", "expired".equals(result));
-    model.addAttribute("token", token);
-    //return "redirect:/badEmployee.html?lang=" + locale.getLanguage();
-    return "redirect:/badEmployee.html";
+    return new GenericResponse(messageSource.getMessage("auth.message." + result,
+        null, request.getLocale()));
   }
 
 
 
-
   private String getAppUrl(HttpServletRequest request) {
-    return "http://" +request.getServerName() + ":"
+    return "http://" + request.getServerName() + ":"
         + request.getServerPort() + request.getContextPath();
   }
 }

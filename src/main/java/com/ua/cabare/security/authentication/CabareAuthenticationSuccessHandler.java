@@ -35,7 +35,7 @@ public class CabareAuthenticationSuccessHandler implements AuthenticationSuccess
   public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
       Authentication authentication) throws IOException, ServletException {
     handle(request, response, authentication);
-    HttpSession session =request.getSession(false);
+    HttpSession session = request.getSession(false);
     if (session != null) {
       session.setMaxInactiveInterval(30 * 60); // need to insert correct time
       LoggedEmployees employees = new LoggedEmployees(authentication.getName(), activeEmployees);
@@ -77,6 +77,4 @@ public class CabareAuthenticationSuccessHandler implements AuthenticationSuccess
       return "/homepage.html";
     }
   }
-
-
 }

@@ -2,7 +2,7 @@ ALTER TABLE `cabaredb`.`employee`
   ADD COLUMN `enabled` BIT(1) NOT NULL AFTER `email`;
 
 CREATE TABLE `verification_token` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `expiryDate` datetime DEFAULT NULL,
   `token` varchar(255) DEFAULT NULL,
   `employee_id` bigint(20) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE `verification_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `privilege` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
