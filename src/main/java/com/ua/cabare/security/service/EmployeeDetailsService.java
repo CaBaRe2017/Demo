@@ -37,7 +37,7 @@ public class EmployeeDetailsService implements UserDetailsService {
           true, true, getAuthorities(employee.getRoles()));
 
     } catch (Exception ex) {
-      throw  new RuntimeException(ex);
+      throw new RuntimeException(ex);
     }
   }
 
@@ -48,18 +48,18 @@ public class EmployeeDetailsService implements UserDetailsService {
   private List<String> getPrivileges(Set<Role> roles) {
     List<String> privileges = new ArrayList<>();
     List<Privilege> collection = new ArrayList<>();
-    for (Role role: roles) {
+    for (Role role : roles) {
       collection.addAll(role.getPrivileges());
     }
-    for (Privilege privilege: collection) {
+    for (Privilege privilege : collection) {
       privileges.add(privilege.getName());
     }
     return privileges;
   }
 
-  private List<GrantedAuthority> getGrantedAthorities (List<String> privileges){
+  private List<GrantedAuthority> getGrantedAthorities(List<String> privileges) {
     List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-    for (String privilege: privileges) {
+    for (String privilege : privileges) {
       grantedAuthorities.add(new SimpleGrantedAuthority(privilege));
     }
     return grantedAuthorities;

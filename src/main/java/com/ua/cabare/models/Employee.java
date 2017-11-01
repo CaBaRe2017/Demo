@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -35,10 +36,10 @@ public class Employee extends EntityManager<Long, Employee> {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
   private Set<Bill> bills;
 
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinTable(name = "employee_role",
-      joinColumns = {@JoinColumn(name = "employee_id")},
-      inverseJoinColumns = {@JoinColumn(name = "role_id")})
+      joinColumns = @JoinColumn(name = "employee_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles;
 
   @ManyToOne(fetch = FetchType.LAZY)
@@ -77,7 +78,7 @@ public class Employee extends EntityManager<Long, Employee> {
     this.enabled = false;
   }
 
-  public Employee(Employee employee) {
+  /*public Employee(Employee employee) {
     this.id = employee.getId();
     this.name = employee.getName();
     this.position = employee.getPosition();
@@ -93,7 +94,7 @@ public class Employee extends EntityManager<Long, Employee> {
     this.birthday = employee.getBirthday();
     this.phone = employee.getPhone();
     this.enabled = false;
-  }
+  }*/
 
   @Override
   public Long getId() {

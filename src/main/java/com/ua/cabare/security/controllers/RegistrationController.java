@@ -2,8 +2,8 @@ package com.ua.cabare.security.controllers;
 
 import com.ua.cabare.models.Employee;
 import com.ua.cabare.security.GenericResponse;
-import com.ua.cabare.security.confirm.ConfirmEmailEvent;
 import com.ua.cabare.security.dto.EmployeeDto;
+import com.ua.cabare.security.event.ConfirmEmailEvent;
 import com.ua.cabare.security.service.EmployeeServiceImpl;
 
 import java.io.UnsupportedEncodingException;
@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
-@RestController("/registration")
+@RestController
+@RequestMapping("/registration")
 public class RegistrationController {
 
   private final Logger log = LoggerFactory.getLogger(getClass());
@@ -39,22 +40,23 @@ public class RegistrationController {
 
   @RequestMapping(value = "/employee", method = RequestMethod.POST)
   @ResponseBody
-  public GenericResponse showRegistrationForm(@RequestBody @Valid EmployeeDto employeeDto,
+  public GenericResponse registrationForm(@RequestBody @Valid EmployeeDto employeeDto,
       HttpServletRequest request) {
     log.debug("Registering employee account with: " + employeeDto);
     Employee employee = employeeService.registerNewEmployeeAccount(employeeDto);
-    eventPublisher.publishEvent(new ConfirmEmailEvent(employee, request.getLocale(), getAppUrl(request)));
+    eventPublisher
+        .publishEvent(new ConfirmEmailEvent(employee, request.getLocale(), getAppUrl(request)));
     return new GenericResponse("success");
   }
 
   @RequestMapping(value = "/confirm", method = RequestMethod.GET)
   @ResponseBody
-  public GenericResponse registrationConfirm(@RequestParam String token,WebRequest request)
+  public GenericResponse registrationConfirm(@RequestParam String token, WebRequest request)
       throws UnsupportedEncodingException {
     String result = employeeService.validateVerificationToken(token);
     if (result.equals("valid")) {
       Employee employee = employeeService.getEmployee(token);
-      if (employee != null){
+      if (employee != null) {
         return new GenericResponse(messageSource.getMessage("message.accountVerified",
             null, request.getLocale()));
       }
@@ -62,7 +64,6 @@ public class RegistrationController {
     return new GenericResponse(messageSource.getMessage("auth.message." + result,
         null, request.getLocale()));
   }
-
 
 
   private String getAppUrl(HttpServletRequest request) {

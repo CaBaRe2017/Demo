@@ -1,4 +1,4 @@
-package com.ua.cabare.security.confirm;
+package com.ua.cabare.security.event;
 
 import com.ua.cabare.models.Employee;
 import com.ua.cabare.security.service.EmployeeService;
@@ -38,15 +38,17 @@ public class RegistrationListener implements ApplicationListener<ConfirmEmailEve
     mailSender.send(email);
   }
 
-  private SimpleMailMessage createEmailMessage(ConfirmEmailEvent emailEvent, Employee employee, String token) {
+  private SimpleMailMessage createEmailMessage(ConfirmEmailEvent emailEvent, Employee employee,
+      String token) {
     String emailAddress = employee.getEmail();
     String subject = "Registration confirmation";
-    String confirmationUrl = emailEvent.getAppUrl() + "/registration/confirm?token=" + token;
+    String confirmationUrl = emailEvent.getAppUrl() + "/registration/event?token=" + token;
     String message = messageSource.getMessage("message.regSuccess", null, emailEvent.getLocale());
     SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
     simpleMailMessage.setTo(emailAddress);
     simpleMailMessage.setSubject(subject);
     simpleMailMessage.setText(message + "\r\n" + confirmationUrl);
+    simpleMailMessage.setFrom("spring.mail.username");
     return simpleMailMessage;
   }
 }

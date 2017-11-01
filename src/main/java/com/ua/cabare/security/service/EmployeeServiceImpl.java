@@ -49,14 +49,15 @@ public class EmployeeServiceImpl implements EmployeeService {
   @Transactional
   @Override
   public Employee registerNewEmployeeAccount(EmployeeDto employeeDto) {
-    if (isEmailExist(employeeDto.getEmail())){
+    if (isEmailExist(employeeDto.getEmail())) {
       throw new EmployeeAlreadyExistException("There is an account with that email address: "
           + employeeDto.getEmail());
     }
 
     Employee employee = new Employee();
     employee.setName(employeeDto.getName());
-    employee.setPosition(positionRepository.getPositionById(Long.valueOf(employeeDto.getPosition())));
+    employee
+        .setPosition(positionRepository.getPositionById(Long.valueOf(employeeDto.getPosition())));
     Set<Role> roles = new HashSet<>();
     roles.add(roleRepository.findRoleById(Long.valueOf(employeeDto.getRole())));
     employee.setRoles(roles);
@@ -79,7 +80,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     Employee employee = tokenFromDb.getEmployee();
     Period period = Period.between(tokenFromDb.getExpiryDate(), LocalDate.now());
-    if (period.getDays() <=0) {
+    if (period.getDays() <= 0) {
       verificationTokenRepository.delete(tokenFromDb);
       return TOKEN_EXPIRED;
     }

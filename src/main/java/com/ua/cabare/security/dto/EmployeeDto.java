@@ -6,6 +6,7 @@ import com.ua.cabare.security.validation.ValidPassword;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
 
 @MatchPassword
 public class EmployeeDto {
@@ -15,15 +16,12 @@ public class EmployeeDto {
   private String name;
 
   @NotNull
-  @Size(min = 1)
   private Integer position;
 
   @NotNull
-  @Size(min = 1)
   private Integer role;
 
   @NotNull
-  @Size(min = 1)
   private Integer department;
 
   @NotNull
@@ -42,6 +40,7 @@ public class EmployeeDto {
   private String phone;
 
   @ValidEmail
+  @Email
   @NotNull
   @Size(min = 1)
   private String email;
@@ -50,7 +49,6 @@ public class EmployeeDto {
   private String password;
 
   @NotNull
-  @Size(min = 1)
   private String matchingPassword;
 
   public String getName() {

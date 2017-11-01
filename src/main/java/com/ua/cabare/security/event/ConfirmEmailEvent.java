@@ -1,4 +1,4 @@
-package com.ua.cabare.security.confirm;
+package com.ua.cabare.security.event;
 
 import com.ua.cabare.models.Employee;
 
@@ -6,7 +6,7 @@ import java.util.Locale;
 
 import org.springframework.context.ApplicationEvent;
 
-public class ConfirmEmailEvent extends ApplicationEvent{
+public class ConfirmEmailEvent extends ApplicationEvent {
 
   private String appUrl;
   private Locale locale;

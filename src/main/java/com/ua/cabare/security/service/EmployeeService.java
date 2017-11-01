@@ -6,16 +6,16 @@ import com.ua.cabare.security.errors.EmployeeAlreadyExistException;
 
 public interface EmployeeService {
 
-  Employee registerNewEmployeeAccount (EmployeeDto employeeDto) throws EmployeeAlreadyExistException;
+  Employee registerNewEmployeeAccount(EmployeeDto employeeDto) throws EmployeeAlreadyExistException;
 
- /* void saveRegisteredEmployee(Employee employee);
+  /* void saveRegisteredEmployee(Employee employee);
 
-  Employee findEmployeeByEmail(String email);
-*/
- String validateVerificationToken(String token);
+   Employee findEmployeeByEmail(String email);
+ */
+  String validateVerificationToken(String token);
 
- void createVerificationTokenForEmployee(Employee employee, String token);
+  void createVerificationTokenForEmployee(Employee employee, String token);
 
- Employee getEmployee (String verificationToken);
+  Employee getEmployee(String verificationToken);
 
 }

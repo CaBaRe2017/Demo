@@ -36,7 +36,7 @@ public class PasswordValidator implements ConstraintValidator<ValidPassword, Str
         new QwertySequenceRule(3, false),
         new WhitespaceRule()));
     RuleResult ruleResult = validator.validate(new PasswordData(password));
-    if (ruleResult.isValid()){
+    if (ruleResult.isValid()) {
       return true;
     }
     context.disableDefaultConstraintViolation();

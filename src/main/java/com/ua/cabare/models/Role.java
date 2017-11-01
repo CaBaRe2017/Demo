@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,6 +34,9 @@ public class Role extends EntityManager<Long, Role> {
       inverseJoinColumns = @JoinColumn(name = "privilege_id"),
       inverseForeignKey = @ForeignKey(name = "FK_RP_PRIVILEGE_ID"))
   private Set<Privilege> privileges;
+
+  @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+  private Set<Employee> employees;
 
   public Role() {
   }

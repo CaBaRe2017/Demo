@@ -52,8 +52,8 @@ public class CabareAuthenticationSuccessHandler implements AuthenticationSuccess
     session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
   }
 
-  private void handle (HttpServletRequest request, HttpServletResponse response,
-    Authentication authentication) throws IOException{
+  private void handle(HttpServletRequest request, HttpServletResponse response,
+      Authentication authentication) throws IOException {
     String targetUrl = determineTargetUrl(authentication);
     if (response.isCommitted()) {
       logger.debug("Response has already been committed. Unable to redirect to " + targetUrl);
@@ -65,7 +65,7 @@ public class CabareAuthenticationSuccessHandler implements AuthenticationSuccess
   private String determineTargetUrl(Authentication authentication) {
     boolean isAdmin = false;
     Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-    for (GrantedAuthority grantedAuthority: authorities) {
+    for (GrantedAuthority grantedAuthority : authorities) {
       if (grantedAuthority.getAuthority().equals("WRITE")) {
         isAdmin = true;
         break;

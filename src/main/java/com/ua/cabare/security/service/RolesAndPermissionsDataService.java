@@ -29,13 +29,16 @@ public class RolesAndPermissionsDataService implements ApplicationListener<Conte
   @Override
   @Transactional
   public void onApplicationEvent(ContextRefreshedEvent event) {
-    if (alreadyConfigured) return;
+    if (alreadyConfigured) {
+      return;
+    }
 
     Privilege readPrivilege = createPrivilege("READ");
     Privilege writePrivilege = createPrivilege("WRITE");
     Privilege changePasswordPrivilege = createPrivilege("CHANGE_PASSWORD");
 
-    List<Privilege> adminPrivileges = Arrays.asList(readPrivilege, writePrivilege, changePasswordPrivilege);
+    List<Privilege> adminPrivileges = Arrays
+        .asList(readPrivilege, writePrivilege, changePasswordPrivilege);
     List<Privilege> ownerPrivileges = Arrays.asList(readPrivilege);
     List<Privilege> managerPrivileges = Arrays.asList(readPrivilege, changePasswordPrivilege);
     List<Privilege> waiterPrivileges = Arrays.asList(readPrivilege, changePasswordPrivilege);

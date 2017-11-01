@@ -32,44 +32,50 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Autowired
   private EmployeeDetailsService employeeDetailsService;
 
+
   @Autowired
   private PasswordEncoder passwordEncoder;
 
   @Autowired
   private AuthenticationSuccessHandler cabareAuthenticationSuccessHandler;
 
+
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(employeeDetailsService).passwordEncoder(passwordEncoder);
   }
+
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
         .csrf().disable()
         .authorizeRequests()
-          .antMatchers("/login*", "/logout*", "*/registration/employee*", "/registration*",
-              "/registration/confirm*").permitAll()
-          .antMatchers("/invalidSession*").anonymous()
-          //.antMatchers("/employee/updatePassword*","/employee/savePassword*","/updatePassword*").hasAuthority("CHANGE_PASSWORD")
-          .anyRequest().hasAuthority("READ")
-          .and()
-        .formLogin()
+        .antMatchers("/login*", "/logout*", "*/registration/employee*", "/registration*",
+            "/registration/event*").permitAll()
+        .antMatchers("/invalidSession*").anonymous()
+        //.antMatchers("/employee/updatePassword*","/employee/savePassword*","/updatePassword*").hasAuthority("CHANGE_PASSWORD")
+        //.anyRequest().hasAuthority("READ")
+        //.and()
+        /*.formLogin()
           //.loginPage("/login")
           .defaultSuccessUrl("/index.html")
           .failureUrl("/login?error=true")
-          .successHandler(cabareAuthenticationSuccessHandler)
+          .successHandler(cabareAuthenticationSuccessHandler)*/
+//        .permitAll()
+        .and()
+        .logout()
+        .logoutUrl("/logout")
+        .clearAuthentication(true)
+        .logoutSuccessUrl("/login")
         .permitAll()
         .and()
-          .logout()
-          .logoutUrl("/logout")
-          .clearAuthentication(true)
-          .logoutSuccessUrl("/login")
-        .permitAll();
+        .httpBasic();
   }
 
+
   @Bean
-  public PasswordEncoder passwordEncoder(){
+  public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder(11);
   }
 
@@ -84,7 +90,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   }
 
   @Bean
-  public AuthenticationSuccessHandler authenticationSuccessHandler () {
+  public AuthenticationSuccessHandler authenticationSuccessHandler() {
     return new CabareAuthenticationSuccessHandler();
   }
 
@@ -102,4 +108,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             + "and r.id=er.role_id"
             + "where e.login=?");
   }*/
+
+  /*
+  @Autowired
+  public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder)
+      throws Exception {
+    authenticationManagerBuilder.inMemoryAuthentication()
+        .withUser("test")
+        .password("test");
+  }
+  */
 }

@@ -26,7 +26,7 @@ public class LoggedEmployees implements HttpSessionBindingListener {
   public void valueBound(HttpSessionBindingEvent event) {
     List<String> employees = activeEmployees.getEmployees();
     LoggedEmployees employee = (LoggedEmployees) event.getValue();
-    if (!employees.contains(employee.getEmployeeName())){
+    if (!employees.contains(employee.getEmployeeName())) {
       employees.add(employee.getEmployeeName());
     }
   }

@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Privilege extends EntityManager<Long, Privilege>{
+public class Privilege extends EntityManager<Long, Privilege> {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

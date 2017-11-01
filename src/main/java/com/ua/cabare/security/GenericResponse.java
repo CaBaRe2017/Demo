@@ -22,8 +22,9 @@ public class GenericResponse {
 
   public GenericResponse(List<ObjectError> allErrors, String error) {
     this.error = error;
-    this.message = allErrors.stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(
-        Collectors.joining(","));
+    this.message = allErrors.stream().map(DefaultMessageSourceResolvable::getDefaultMessage)
+        .collect(
+            Collectors.joining(","));
   }
 
   public String getMessage() {
