@@ -1,10 +1,10 @@
 package com.ua.cabare.security;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.validation.ObjectError;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class GenericResponse {
 

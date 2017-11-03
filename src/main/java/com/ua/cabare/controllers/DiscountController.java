@@ -6,7 +6,6 @@ import static com.ua.cabare.domain.Response.STATUS;
 
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.domain.Response;
-import com.ua.cabare.exceptions.DiscountCardNotFoundException;
 import com.ua.cabare.models.Discount;
 import com.ua.cabare.services.DiscountService;
 
@@ -42,7 +41,7 @@ public class DiscountController {
     try {
       Discount card = discountService.getDiscountCard(discountCard);
       response.put(DISCOUNT_CARD, card);
-    } catch (DiscountCardNotFoundException ex) {
+    } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
     return response;
@@ -53,7 +52,7 @@ public class DiscountController {
       @RequestParam(name = "discount_size") int newDiscountSize) {
     try {
       discountService.changeDiscountSize(discountCard, newDiscountSize);
-    } catch (DiscountCardNotFoundException ex) {
+    } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
     return response;
@@ -64,7 +63,7 @@ public class DiscountController {
     try {
       int discountSize = discountService.getDiscountSize(discountCard);
       response.put(DISCOUNT_SIZE, discountSize);
-    } catch (DiscountCardNotFoundException ex) {
+    } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
     return response;
@@ -74,7 +73,7 @@ public class DiscountController {
   public Response blockCard(@RequestParam(name = "discount_card") String discountCard) {
     try {
       discountService.blockDiscountCard(discountCard);
-    } catch (DiscountCardNotFoundException ex) {
+    } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
     return response;
@@ -85,7 +84,7 @@ public class DiscountController {
       @RequestParam(name = "add_payment") Money payment) {
     try {
       discountService.addPayment(discountCard, payment);
-    } catch (DiscountCardNotFoundException ex) {
+    } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
     return response;

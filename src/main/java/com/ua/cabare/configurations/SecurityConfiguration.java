@@ -54,7 +54,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers("/login*", "/logout*", "*/registration/employee*", "/registration*",
             "/registration/event*").permitAll()
         .antMatchers("/invalidSession*").anonymous()
-        //.antMatchers("/employee/updatePassword*","/employee/savePassword*","/updatePassword*").hasAuthority("CHANGE_PASSWORD")
+        //.antMatchers("/employee/updatePassword*","/employee/savePassword*","/updatePassword*")
+        // .hasAuthority("CHANGE_PASSWORD")
         //.anyRequest().hasAuthority("READ")
         .and()
         .formLogin()
@@ -97,9 +98,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   /*@Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("select e.login as username,"
-        + " e.password, true as enabled from employee e"
-        + " where e.login=?")
+    auth.jdbcAuthentication().dataSource(dataSource)
+        .usersByUsernameQuery("select e.login as username,"
+            + " e.password, true as enabled from employee e"
+            + " where e.login=?")
         .authoritiesByUsernameQuery("select e.login as username,"
             + " r.name as role from employee e"
             + " join employee_role er"
@@ -109,13 +111,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             + "where e.login=?");
   }*/
 
-  /*
-  @Autowired
+  /*@Autowired
   public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder)
       throws Exception {
     authenticationManagerBuilder.inMemoryAuthentication()
         .withUser("test")
         .password("test");
-  }
-  */
+  }*/
 }

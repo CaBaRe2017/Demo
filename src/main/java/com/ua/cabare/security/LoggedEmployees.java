@@ -2,11 +2,11 @@ package com.ua.cabare.security;
 
 import com.ua.cabare.security.dto.ActiveEmployees;
 
-import java.util.List;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
-import org.springframework.stereotype.Component;
 
 @Component
 public class LoggedEmployees implements HttpSessionBindingListener {

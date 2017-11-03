@@ -1,6 +1,5 @@
 package com.ua.cabare.security.errors;
 
-import com.ua.cabare.exceptions.EmployeeNotFoundException;
 import com.ua.cabare.security.GenericResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;

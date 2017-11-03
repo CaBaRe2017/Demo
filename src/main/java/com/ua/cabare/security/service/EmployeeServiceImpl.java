@@ -12,16 +12,16 @@ import com.ua.cabare.security.errors.EmployeeAlreadyExistException;
 import com.ua.cabare.security.event.ConfirmEmailEvent;
 import com.ua.cabare.security.model.VerificationToken;
 
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {

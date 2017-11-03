@@ -4,7 +4,6 @@ import com.ua.cabare.models.Employee;
 import com.ua.cabare.models.EntityManager;
 
 import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;

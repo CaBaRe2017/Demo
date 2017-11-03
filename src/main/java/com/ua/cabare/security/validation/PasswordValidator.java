@@ -2,10 +2,6 @@ package com.ua.cabare.security.validation;
 
 import com.google.common.base.Joiner;
 
-import java.util.Arrays;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 import org.passay.AlphabeticalSequenceRule;
 import org.passay.DigitCharacterRule;
 import org.passay.LengthRule;
@@ -16,6 +12,10 @@ import org.passay.RuleResult;
 import org.passay.SpecialCharacterRule;
 import org.passay.UppercaseCharacterRule;
 import org.passay.WhitespaceRule;
+
+import java.util.Arrays;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class PasswordValidator implements ConstraintValidator<ValidPassword, String> {
 

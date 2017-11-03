@@ -1,17 +1,17 @@
 package com.ua.cabare.models;
 
-import java.io.Serializable;
-
 import org.hibernate.Hibernate;
 
-public abstract class EntityManager <K extends Comparable<K> & Serializable, E extends EntityManager<K, ?>>
-    implements Serializable, Comparable<E>{
+import java.io.Serializable;
+
+public abstract class EntityManager<K extends Comparable<K> & Serializable, E extends EntityManager<K, ?>>
+    implements Serializable, Comparable<E> {
 
   public abstract K getId();
 
   public abstract void setId(K id);
 
-  public boolean isNew(){
+  public boolean isNew() {
     return getId() == null;
   }
 
@@ -54,10 +54,10 @@ public abstract class EntityManager <K extends Comparable<K> & Serializable, E e
 
   @Override
   public String toString() {
-    return Hibernate.getClass(this).getSimpleName() +
-        ": " +
-        getId() +
-        "-" +
-        super.toString();
+    return Hibernate.getClass(this).getSimpleName()
+        + ": "
+        + getId()
+        + "-"
+        + super.toString();
   }
 }

@@ -4,7 +4,6 @@ import com.ua.cabare.models.EntityManager;
 import com.ua.cabare.models.Role;
 
 import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;

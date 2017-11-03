@@ -4,9 +4,10 @@ import com.ua.cabare.security.validation.MatchPassword;
 import com.ua.cabare.security.validation.ValidEmail;
 import com.ua.cabare.security.validation.ValidPassword;
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.Email;
 
 @MatchPassword
 public class EmployeeDto {

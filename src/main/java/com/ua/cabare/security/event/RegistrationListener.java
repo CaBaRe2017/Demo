@@ -3,14 +3,14 @@ package com.ua.cabare.security.event;
 import com.ua.cabare.models.Employee;
 import com.ua.cabare.security.service.VerificationTokenServiceImpl;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.event.EventListener;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 @Component
 public class RegistrationListener {

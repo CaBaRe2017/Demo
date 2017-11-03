@@ -1,6 +1,7 @@
 package com.ua.cabare.services;
 
-import com.ua.cabare.exceptions.EmployeeNotFoundException;
+import static com.ua.cabare.domain.ResponseStatus.EMPLOYEE_NOT_FOUND;
+
 import com.ua.cabare.models.Employee;
 import com.ua.cabare.repositories.EmployeeRepository;
 
@@ -13,11 +14,13 @@ public class EmployeeService {
   @Autowired
   private EmployeeRepository employeeRepository;
 
-  public Employee getEmployeeById(Long id) throws EmployeeNotFoundException {
-    return employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException());
+  public Employee getEmployeeById(Long id) {
+    return employeeRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException(EMPLOYEE_NOT_FOUND));
   }
 
-  public Employee getEmployeeByLogin(String login) throws EmployeeNotFoundException {
-    return employeeRepository.findByLogin(login).orElseThrow(() -> new EmployeeNotFoundException());
+  public Employee getEmployeeByLogin(String login) {
+    return employeeRepository.findByLogin(login)
+        .orElseThrow(() -> new RuntimeException(EMPLOYEE_NOT_FOUND));
   }
 }

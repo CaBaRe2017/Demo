@@ -5,15 +5,15 @@ import com.ua.cabare.repositories.PrivilegeRepository;
 import com.ua.cabare.repositories.RoleRepository;
 import com.ua.cabare.security.model.Privilege;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 @Component
 public class RolesAndPermissionsDataService implements ApplicationListener<ContextRefreshedEvent> {
