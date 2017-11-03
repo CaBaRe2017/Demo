@@ -44,6 +44,12 @@
       <version>1.5.7.RELEASE</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-mail</artifactId>
+      <version>1.5.7.RELEASE</version>
+    </dependency>
+
 
     <!-- Add database migration support -->
     <dependency>
@@ -52,11 +58,11 @@
       <version>3.0</version>
     </dependency>
     <!-- Add security support -->
-    <!--<dependency>-->
-      <!--<groupId>org.springframework.boot</groupId>-->
-      <!--<artifactId>spring-boot-starter-security</artifactId>-->
-      <!--<version>1.5.7.RELEASE</version>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+      <version>1.5.7.RELEASE</version>
+    </dependency>
     
     <dependency>
       <groupId>org.springframework.security</groupId>
@@ -64,6 +70,20 @@
       <version>4.2.3.RELEASE</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- Add password validator -->
+    <dependency>
+      <groupId>org.passay</groupId>
+      <artifactId>passay</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>23.0</version>
+    </dependency>
+
 
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>

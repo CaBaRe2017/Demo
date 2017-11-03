@@ -1,4 +1,4 @@
-package com.ua.cabare.repositiries;
+package com.ua.cabare.repositories;
 
 import com.ua.cabare.models.Dish;
 import com.ua.cabare.models.DishCategory;

@@ -15,7 +15,7 @@ import com.ua.cabare.models.Discount;
 import com.ua.cabare.models.Dish;
 import com.ua.cabare.models.Employee;
 import com.ua.cabare.models.OrderItem;
-import com.ua.cabare.repositiries.BillRepository;
+import com.ua.cabare.repositories.BillRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

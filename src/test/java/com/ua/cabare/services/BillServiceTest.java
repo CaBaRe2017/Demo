@@ -13,7 +13,7 @@ import com.ua.cabare.models.Bill;
 import com.ua.cabare.models.Dish;
 import com.ua.cabare.models.Employee;
 import com.ua.cabare.models.OrderItem;
-import com.ua.cabare.repositiries.BillRepository;
+import com.ua.cabare.repositories.BillRepository;
 
 import org.junit.Before;
 import org.junit.Test;

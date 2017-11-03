@@ -5,7 +5,7 @@ import static com.ua.cabare.domain.ResponseStatus.DISH_CATEGORY_NOT_SPECIFIED;
 
 import com.ua.cabare.domain.Utils;
 import com.ua.cabare.models.DishCategory;
-import com.ua.cabare.repositiries.DishCategoryRepository;
+import com.ua.cabare.repositories.DishCategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

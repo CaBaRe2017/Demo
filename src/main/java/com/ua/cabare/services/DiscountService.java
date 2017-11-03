@@ -4,7 +4,7 @@ import static com.ua.cabare.domain.ResponseStatus.DISCOUNT_CARD_NOT_FOUND;
 
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.models.Discount;
-import com.ua.cabare.repositiries.DiscountRepository;
+import com.ua.cabare.repositories.DiscountRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
