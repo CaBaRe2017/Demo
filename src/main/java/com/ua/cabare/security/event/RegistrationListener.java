@@ -1,22 +1,22 @@
 package com.ua.cabare.security.event;
 
 import com.ua.cabare.models.Employee;
-import com.ua.cabare.security.service.EmployeeService;
+import com.ua.cabare.security.service.VerificationTokenServiceImpl;
 
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.MessageSource;
+import org.springframework.context.event.EventListener;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RegistrationListener implements ApplicationListener<ConfirmEmailEvent> {
+public class RegistrationListener {
 
   @Autowired
-  private EmployeeService employeeService;
+  private VerificationTokenServiceImpl verificationTokenService;
 
   @Autowired
   private MessageSource messageSource;
@@ -24,15 +24,11 @@ public class RegistrationListener implements ApplicationListener<ConfirmEmailEve
   @Autowired
   private JavaMailSender mailSender;
 
-  @Override
-  public void onApplicationEvent(ConfirmEmailEvent event) {
-    this.confirmRegistration(event);
-  }
-
-  private void confirmRegistration(ConfirmEmailEvent event) {
+  @EventListener
+  private void handleConfirmRegistration(ConfirmEmailEvent event) {
     Employee employee = event.getEmployee();
     String token = UUID.randomUUID().toString();
-    employeeService.createVerificationTokenForEmployee(employee, token);
+    verificationTokenService.createVerificationTokenForEmployee(employee, token);
 
     SimpleMailMessage email = createEmailMessage(event, employee, token);
     mailSender.send(email);
@@ -43,7 +39,7 @@ public class RegistrationListener implements ApplicationListener<ConfirmEmailEve
     String emailAddress = employee.getEmail();
     String subject = "Registration confirmation";
     String confirmationUrl = emailEvent.getAppUrl() + "/registration/event?token=" + token;
-    String message = messageSource.getMessage("message.regSuccess", null, emailEvent.getLocale());
+    String message = messageSource.getMessage("message.emailText", null, emailEvent.getLocale());
     SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
     simpleMailMessage.setTo(emailAddress);
     simpleMailMessage.setSubject(subject);

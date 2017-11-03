@@ -8,14 +8,6 @@ public interface EmployeeService {
 
   Employee registerNewEmployeeAccount(EmployeeDto employeeDto) throws EmployeeAlreadyExistException;
 
-  /* void saveRegisteredEmployee(Employee employee);
-
-   Employee findEmployeeByEmail(String email);
- */
-  String validateVerificationToken(String token);
-
-  void createVerificationTokenForEmployee(Employee employee, String token);
-
   Employee getEmployee(String verificationToken);
 
 }

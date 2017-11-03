@@ -27,7 +27,7 @@ public class PasswordValidator implements ConstraintValidator<ValidPassword, Str
   @Override
   public boolean isValid(String password, ConstraintValidatorContext context) {
     org.passay.PasswordValidator validator = new org.passay.PasswordValidator(Arrays.asList(
-        new LengthRule(8, 30),
+        new LengthRule(4, 30),
         new UppercaseCharacterRule(1),
         new DigitCharacterRule(1),
         new SpecialCharacterRule(1),

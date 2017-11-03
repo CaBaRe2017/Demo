@@ -36,7 +36,7 @@ public class Employee extends EntityManager<Long, Employee> {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
   private Set<Bill> bills;
 
-  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinTable(name = "employee_role",
       joinColumns = @JoinColumn(name = "employee_id"),
       inverseJoinColumns = @JoinColumn(name = "role_id"))

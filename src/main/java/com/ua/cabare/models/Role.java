@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,7 +27,7 @@ public class Role extends EntityManager<Long, Role> {
   @Column(name = "name")
   private String name;
 
-  @ManyToMany(fetch = FetchType.LAZY)
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "role_privilege", joinColumns = @JoinColumn(name = "role_id"),
       foreignKey = @ForeignKey(name = "FK_RP_ROLE_ID"),
       inverseJoinColumns = @JoinColumn(name = "privilege_id"),

@@ -3,8 +3,8 @@ package com.ua.cabare.security.controllers;
 import com.ua.cabare.models.Employee;
 import com.ua.cabare.security.GenericResponse;
 import com.ua.cabare.security.dto.EmployeeDto;
-import com.ua.cabare.security.event.ConfirmEmailEvent;
 import com.ua.cabare.security.service.EmployeeServiceImpl;
+import com.ua.cabare.security.service.VerificationTokenServiceImpl;
 
 import java.io.UnsupportedEncodingException;
 
@@ -13,7 +13,6 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +32,7 @@ public class RegistrationController {
   private EmployeeServiceImpl employeeService;
 
   @Autowired
-  private ApplicationEventPublisher eventPublisher;
+  private VerificationTokenServiceImpl verificationTokenService;
 
   @Autowired
   private MessageSource messageSource;
@@ -44,16 +43,16 @@ public class RegistrationController {
       HttpServletRequest request) {
     log.debug("Registering employee account with: " + employeeDto);
     Employee employee = employeeService.registerNewEmployeeAccount(employeeDto);
-    eventPublisher
-        .publishEvent(new ConfirmEmailEvent(employee, request.getLocale(), getAppUrl(request)));
-    return new GenericResponse("success");
+
+    return new GenericResponse(messageSource
+        .getMessage("message.regSuccess", null, request.getLocale()));
   }
 
-  @RequestMapping(value = "/confirm", method = RequestMethod.GET)
+  @RequestMapping(value = "/event", method = RequestMethod.GET)
   @ResponseBody
   public GenericResponse registrationConfirm(@RequestParam String token, WebRequest request)
       throws UnsupportedEncodingException {
-    String result = employeeService.validateVerificationToken(token);
+    String result = verificationTokenService.validateVerificationToken(token);
     if (result.equals("valid")) {
       Employee employee = employeeService.getEmployee(token);
       if (employee != null) {
@@ -65,9 +64,4 @@ public class RegistrationController {
         null, request.getLocale()));
   }
 
-
-  private String getAppUrl(HttpServletRequest request) {
-    return "http://" + request.getServerName() + ":"
-        + request.getServerPort() + request.getContextPath();
-  }
 }
