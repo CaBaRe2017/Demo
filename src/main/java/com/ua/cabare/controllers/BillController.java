@@ -12,6 +12,7 @@ import com.ua.cabare.models.Bill;
 import com.ua.cabare.models.Discount;
 import com.ua.cabare.models.OrderItem;
 import com.ua.cabare.services.BillService;
+import com.ua.cabare.services.SecurityService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,8 @@ public class BillController {
   private BillService billService;
   @Autowired
   private Response response;
+  @Autowired
+  private SecurityService securityService;
 
   public void setBillService(BillService billService) {
     this.billService = billService;
@@ -41,8 +44,9 @@ public class BillController {
   }
 
   @RequestMapping(value = "/open", method = RequestMethod.PUT)
-  public Response openBill(@RequestBody Bill bill) {
+  public Response openBill(@RequestBody Bill bill, @RequestParam Long employeeId) {
     try {
+      securityService.authorizeEmployee(employeeId);
       bill = billService.openBill(bill);
       response.put(BILL, bill);
     } catch (Exception ex) {
@@ -62,8 +66,10 @@ public class BillController {
   }
 
   @RequestMapping(value = "/add/orderitems", method = RequestMethod.PUT)
-  public Response addOrder(@RequestParam long billId, @RequestParam List<OrderItem> orderItems) {
+  public Response addOrder(@RequestParam long billId, @RequestBody List<OrderItem> orderItems,
+      @RequestParam Long employeeId) {
     try {
+      securityService.authorizeEmployee(employeeId);
       Bill bill = billService.updateBill(billId, orderItems);
       response.put(BILL, bill);
     } catch (Exception ex) {
