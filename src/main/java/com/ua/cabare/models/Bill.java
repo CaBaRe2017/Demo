@@ -1,7 +1,6 @@
 package com.ua.cabare.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ua.cabare.domain.Money;
@@ -37,21 +36,26 @@ public class Bill extends EntityManager<Long, Bill> {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @JsonIgnore
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "bill_number")
   private int billNumber;
 
+  @JsonProperty(value = "bill_date")
   @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
   @Column(name = "bill_date", columnDefinition = "date")
   private LocalDateTime billDate;
 
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "employee_id")
   private Employee employee;
 
+  @JsonProperty(value = "table_number")
   @Column(name = "table_number")
   private Integer tableNumber;
 
+  @JsonProperty(value = "number_of_persons")
   @Column(name = "number_of_persons")
   private Integer numberOfPersons;
 
@@ -60,10 +64,12 @@ public class Bill extends EntityManager<Long, Bill> {
   private Discount discount;
 
   @Column(name = "sale_type_id")
+  @JsonProperty(value = "sale_type")
   @Enumerated(EnumType.ORDINAL)
   private SaleType saleType;
 
   @Column(name = "pay_type_id")
+  @JsonProperty(value = "pay_type")
   @Enumerated(EnumType.ORDINAL)
   private PayType payType;
 
@@ -72,6 +78,7 @@ public class Bill extends EntityManager<Long, Bill> {
   @Enumerated(EnumType.ORDINAL)
   private PayStatus payStatus;
 
+  @JsonProperty(value = "order_items")
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "bill", cascade = CascadeType.ALL)
   private List<OrderItem> orderItems;
 
