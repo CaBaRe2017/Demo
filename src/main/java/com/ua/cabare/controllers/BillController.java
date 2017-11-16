@@ -2,14 +2,13 @@ package com.ua.cabare.controllers;
 
 import static com.ua.cabare.domain.Response.BILL;
 import static com.ua.cabare.domain.Response.BILL_LIST;
-import static com.ua.cabare.domain.Response.BILL_PRICE;
 import static com.ua.cabare.domain.Response.STATUS;
 
+import com.ua.cabare.domain.BillDto;
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.domain.PayStatus;
 import com.ua.cabare.domain.Response;
 import com.ua.cabare.models.Bill;
-import com.ua.cabare.models.Discount;
 import com.ua.cabare.models.OrderItem;
 import com.ua.cabare.services.BillService;
 import com.ua.cabare.services.SecurityService;
@@ -48,9 +47,10 @@ public class BillController {
     try {
       securityService.authorizeEmployee(employeeId);
       bill = billService.openBill(bill);
-      response.put(BILL, bill);
+      response.put(BILL, new BillDto(bill));
     } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
+      ex.printStackTrace();
     }
     return response;
   }
@@ -71,7 +71,7 @@ public class BillController {
     try {
       securityService.authorizeEmployee(employeeId);
       Bill bill = billService.updateBill(billId, orderItems);
-      response.put(BILL, bill);
+      response.put(BILL, new BillDto(bill));
     } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
@@ -90,12 +90,21 @@ public class BillController {
   }
 
   @RequestMapping(value = "/preclose", method = RequestMethod.POST)
-  public Response closeBill(@RequestParam Long id, @RequestParam Discount discount) {
+  public Response preCloseBill(@RequestParam(name = "bill_id") Long billId,
+      @RequestParam(name = "discount_id") Long discountId) {
     try {
-      Bill bill = billService.preCloseBill(id, discount);
-      response.put(BILL, bill);
-      Money billPrice = bill.getBillPrice();
-      response.put(BILL_PRICE, billPrice);
+      Bill bill = billService.preCloseBill(billId, discountId);
+      response.put(BILL, new BillDto(bill));
+    } catch (Exception ex) {
+      response.put(STATUS, ex.getMessage());
+    }
+    return response;
+  }
+
+  @RequestMapping(value = "/close", method = RequestMethod.POST)
+  public Response close(@RequestParam(name = "bill_id") Long billId) {
+    try {
+      billService.close(billId);
     } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }

@@ -31,6 +31,10 @@ public class OrderItem extends EntityManager<Long, OrderItem> {
   @JoinColumn(name = "dish_id")
   private Dish dish;
 
+  @JsonProperty(value = "dish_name")
+  @Column(name = "dish_name")
+  private String dishName;
+
   @Column(name = "quantity")
   private int quantity;
 
@@ -114,5 +118,13 @@ public class OrderItem extends EntityManager<Long, OrderItem> {
 
   public void setBill(Bill bill) {
     this.bill = bill;
+  }
+
+  public String getDishName() {
+    return dishName;
+  }
+
+  public void setDishName(String dishName) {
+    this.dishName = dishName;
   }
 }
