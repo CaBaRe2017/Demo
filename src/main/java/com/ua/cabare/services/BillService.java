@@ -6,7 +6,6 @@ import static com.ua.cabare.domain.PayStatus.PREPAID;
 import static com.ua.cabare.domain.ResponseStatus.ACCESS_DENIED;
 import static com.ua.cabare.domain.ResponseStatus.BILL_NOT_FOUND;
 import static com.ua.cabare.domain.ResponseStatus.BILL_NOT_SPECIFIED;
-import static com.ua.cabare.domain.ResponseStatus.DISCOUNT_CARD_NOT_FOUND;
 import static com.ua.cabare.domain.ResponseStatus.EMPTY_ORDER_LIST;
 
 import com.ua.cabare.domain.Money;
@@ -78,13 +77,22 @@ public class BillService {
     return billRepository.save(billUpdated);
   }
 
-  public Bill preCloseBill(Long billId, Discount discount) {
+  public Bill preCloseBill(Long billId, Long discountId) {
     Bill bill = findBill(billId);
-    discount = resolveDiscount(discount);
-    bill.setDiscount(discount);
+    if (discountId != null) {
+      Discount discount = resolveDiscount(discountId);
+      bill.setDiscount(discount);
+    }
     bill.setPayStatus(AWAIT);
     Bill preClosedBill = billRepository.save(bill);
     return preClosedBill;
+  }
+
+  public void close(Long billId) {
+    Bill bill = findBill(billId);
+    bill.setPayStatus(PAID);
+    bill.setOpened(false);
+    billRepository.save(bill);
   }
 
   public void payOff(Long billId) {
@@ -118,14 +126,8 @@ public class BillService {
   }
 
 
-  private Discount resolveDiscount(Discount discount) {
-    if (discount.getId() != null) {
-      return discountService.getById(discount.getId());
-    }
-    if (discount.getDiscountCard() != null) {
-      return discountService.getDiscountCard(discount.getDiscountCard());
-    }
-    throw new RuntimeException(DISCOUNT_CARD_NOT_FOUND);
+  private Discount resolveDiscount(Long id) {
+    return discountService.getById(id);
   }
 
   private List<OrderItem> resolveDishesInOrders(List<OrderItem> orderItems) {
@@ -134,6 +136,7 @@ public class BillService {
       if (dish != null && dish.getId() != null) {
         Dish dishResolved = dishService.findDish(dish.getId());
         orderItem.setDish(dishResolved);
+        orderItem.setDishName(dishResolved.getName());
       }
     }
     return orderItems;
