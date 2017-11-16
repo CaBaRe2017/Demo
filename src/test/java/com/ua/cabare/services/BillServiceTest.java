@@ -92,9 +92,9 @@ public class BillServiceTest {
 
     assertThat(updatedBill.getOrderItems().size()).isEqualTo(1);
     assertThat(updatedBill.getOrderItems().get(0).getOrderTime())
-        .isLessThan(LocalDateTime.now(ZoneId.of("UTC+3")));
+        .isLessThan(LocalDateTime.now());
     assertThat(updatedBill.getOrderItems().get(0).getOrderTime())
-        .isGreaterThan(LocalDateTime.now(ZoneId.of("UTC+3")).minusSeconds(2));
+        .isGreaterThan(LocalDateTime.now().minusSeconds(2));
     verify(billRepository, times(1)).save(any(Bill.class));
   }
 }
