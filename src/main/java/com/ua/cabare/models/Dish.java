@@ -48,6 +48,14 @@ public class Dish extends EntityManager<Long, Dish> {
   @Convert(converter = MoneyConverter.class)
   private Money price;
 
+  @JsonProperty("start_day")
+  @Column(name = "start_day")
+  private Integer startDay;
+
+  @JsonProperty("end_day")
+  @Column(name = "end_day")
+  private Integer endDay;
+
   @Override
   public Long getId() {
     return id;
@@ -96,6 +104,22 @@ public class Dish extends EntityManager<Long, Dish> {
 
   public void setPrice(Money price) {
     this.price = price;
+  }
+
+  public Integer getEndDay() {
+    return endDay;
+  }
+
+  public void setEndDay(Integer endDay) {
+    this.endDay = endDay;
+  }
+
+  public Integer getStartDay() {
+    return startDay;
+  }
+
+  public void setStartDay(Integer startDay) {
+    this.startDay = startDay;
   }
 }
 
