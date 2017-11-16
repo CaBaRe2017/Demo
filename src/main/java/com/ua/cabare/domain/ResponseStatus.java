@@ -12,4 +12,6 @@ public class ResponseStatus {
   public static final String EMPLOYEE_NOT_FOUND = "EMPLOYEE_NOT_FOUND";
   public static final String DISH_CATEGORY_NOT_FOUND = "DISH_CATEGORY_NOT_FOUND";
   public static final String DISH_CATEGORY_NOT_SPECIFIED = "DISH_CATEGORY_NOT_SPECIFIED";
+  public static final String ACCESS_DENIED = "ACCESS_DENIED";
+
 }

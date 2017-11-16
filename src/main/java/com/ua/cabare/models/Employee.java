@@ -1,5 +1,7 @@
 package com.ua.cabare.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -32,6 +34,7 @@ public class Employee extends EntityManager<Long, Employee> {
   @JoinColumn(name = "position_id")
   private Position position;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
   private Set<Bill> bills;
 

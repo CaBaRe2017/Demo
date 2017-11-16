@@ -1,6 +1,8 @@
 package com.ua.cabare.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.hibernate.custom.types.MoneyConverter;
 
@@ -21,7 +23,6 @@ import javax.persistence.Table;
 @Table(name = "order_items")
 public class OrderItem extends EntityManager<Long, OrderItem> {
 
-  @JsonIgnore
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
@@ -33,6 +34,7 @@ public class OrderItem extends EntityManager<Long, OrderItem> {
   @Column(name = "quantity")
   private int quantity;
 
+  @JsonProperty(value = "total_price")
   @Column(name = "total_price")
   @Convert(converter = MoneyConverter.class)
   private Money totalPrice;
@@ -40,6 +42,8 @@ public class OrderItem extends EntityManager<Long, OrderItem> {
   @Column(name = "comments")
   private String comments;
 
+  @JsonProperty(value = "order_time")
+  @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
   @Column(name = "order_time")
   private LocalDateTime orderTime;
 

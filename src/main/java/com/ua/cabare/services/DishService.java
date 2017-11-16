@@ -22,6 +22,8 @@ public class DishService {
   private DishRepository dishRepository;
   @Autowired
   DishCategoryService dishCategoryService;
+  @Autowired
+  private TimeService timeService;
 
   public Dish findDish(Long dishId) {
     return dishRepository.findById(dishId).orElseThrow(() -> new RuntimeException(DISH_NOT_FOUND));
@@ -49,7 +51,8 @@ public class DishService {
   }
 
   public List<Dish> getDishes(Pageable pageable) {
-    return dishRepository.streamAllPaged(pageable);
+    int dayOfYear = timeService.getCurrentTime().getDayOfYear();
+    return dishRepository.streamAllPaged(dayOfYear, pageable);
   }
 
   public List<Dish> getDishesByCategory(Long dishCategoryId, Pageable pageable) {

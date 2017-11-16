@@ -34,6 +34,7 @@ import java.util.Optional;
 public class BillServiceTest {
 
   Bill bill;
+  Employee employee;
   @Autowired
   BillService billService;
   @MockBean
@@ -49,12 +50,14 @@ public class BillServiceTest {
   @Before
   public void setUp() throws Exception {
     bill = new Bill();
+    employee = new Employee();
+    employee.setId(1L);
+    bill.setEmployee(employee);
   }
 
   @Test
   public void openBillShouldSetOpenedTrue() throws Exception {
 
-    Employee employee = new Employee();
     when(securityService.getEmployeeFromSession()).thenReturn(employee);
     when(billRepository.save(any(Bill.class))).thenReturn(bill);
 
@@ -83,6 +86,7 @@ public class BillServiceTest {
     when(billRepository.findById(anyLong())).thenReturn(Optional.of(bill));
     when(billRepository.save(any(Bill.class))).thenReturn(bill);
     when(dishService.findDish(any())).thenReturn(dish);
+    when(securityService.getEmployeeFromSession()).thenReturn(employee);
 
     Bill updatedBill = billService.updateBill(1, Arrays.asList(orderItem));
 

@@ -3,6 +3,7 @@ package com.ua.cabare.services;
 import static com.ua.cabare.domain.PayStatus.AWAIT;
 import static com.ua.cabare.domain.PayStatus.PAID;
 import static com.ua.cabare.domain.PayStatus.PREPAID;
+import static com.ua.cabare.domain.ResponseStatus.ACCESS_DENIED;
 import static com.ua.cabare.domain.ResponseStatus.BILL_NOT_FOUND;
 import static com.ua.cabare.domain.ResponseStatus.BILL_NOT_SPECIFIED;
 import static com.ua.cabare.domain.ResponseStatus.DISCOUNT_CARD_NOT_FOUND;
@@ -10,6 +11,7 @@ import static com.ua.cabare.domain.ResponseStatus.EMPTY_ORDER_LIST;
 
 import com.ua.cabare.domain.Money;
 import com.ua.cabare.domain.PayStatus;
+import com.ua.cabare.domain.Utils;
 import com.ua.cabare.models.Bill;
 import com.ua.cabare.models.Discount;
 import com.ua.cabare.models.Dish;
@@ -20,7 +22,6 @@ import com.ua.cabare.repositiries.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,6 +42,8 @@ public class BillService {
     bill.setEmployee(securityService.getEmployeeFromSession());
     bill.setBillDate(timeService.getCurrentTime());
     bill.setOpened(true);
+    List<OrderItem> orderItems = mergeOrders(bill, bill.getOrderItems());
+    bill.setOrderItems(orderItems);
     return billRepository.save(bill);
   }
 
@@ -49,36 +52,30 @@ public class BillService {
       throw new RuntimeException(EMPTY_ORDER_LIST);
     }
     Bill billStored = findBill(billId);
-    orderItems = resolveDishesInOrders(orderItems);
+    if (billStored.getEmployee().getId() != securityService.getEmployeeFromSession().getId()) {
+      throw new RuntimeException(ACCESS_DENIED);
+    }
+    orderItems = mergeOrders(billStored, orderItems);
+    billStored.getOrderItems().addAll(orderItems);
+    return billRepository.save(billStored);
+  }
+
+  private List<OrderItem> mergeOrders(Bill bill, List<OrderItem> orderItems) {
+    resolveDishesInOrders(orderItems);
     for (OrderItem orderItem : orderItems) {
       orderItem.setOrderTime(timeService.getCurrentTime());
     }
     for (OrderItem orderItem : orderItems) {
       orderItem.setTotalPrice(orderItem.getTotalPrice());
+      orderItem.setBill(bill);
     }
-    billStored.getOrderItems().addAll(orderItems);
-    return billRepository.save(billStored);
+    return orderItems;
   }
 
   public Bill updateBill(Bill bill) {
-    Long id = bill.getId();
-    if (id == null) {
-      throw new RuntimeException(BILL_NOT_SPECIFIED);
-    }
-    Bill billStored = findBill(id);
-    if (bill.getTableNumber() != null) {
-      billStored.setTableNumber(bill.getTableNumber());
-    }
-    if (bill.getNumberOfPersons() != null) {
-      billStored.setNumberOfPersons(bill.getNumberOfPersons());
-    }
-    if (bill.getSaleType() != null) {
-      billStored.setPayType(bill.getPayType());
-    }
-    if (bill.getDiscount() != null) {
-      billStored.setDiscount(bill.getDiscount());
-    }
-    return billRepository.save(billStored);
+    Bill billStored = findBill(bill.getId());
+    Bill billUpdated = Utils.updateState(billStored, bill);
+    return billRepository.save(billUpdated);
   }
 
   public Bill preCloseBill(Long billId, Discount discount) {
@@ -132,19 +129,20 @@ public class BillService {
   }
 
   private List<OrderItem> resolveDishesInOrders(List<OrderItem> orderItems) {
-    List<OrderItem> resolvedOrders = new ArrayList<>();
     for (OrderItem orderItem : orderItems) {
       Dish dish = orderItem.getDish();
       if (dish != null && dish.getId() != null) {
         Dish dishResolved = dishService.findDish(dish.getId());
         orderItem.setDish(dishResolved);
-        resolvedOrders.add(orderItem);
       }
     }
-    return resolvedOrders;
+    return orderItems;
   }
 
-  private Bill findBill(long id) {
+  private Bill findBill(Long id) {
+    if (id == null) {
+      throw new RuntimeException(BILL_NOT_SPECIFIED);
+    }
     return billRepository.findById(id).orElseThrow(() -> new RuntimeException(BILL_NOT_FOUND));
   }
 }

@@ -16,8 +16,8 @@ public interface DishRepository extends CrudRepository<Dish, Long> {
 
   Dish save(Dish dish);
 
-  @Query("SELECT d FROM Dish d")
-  List<Dish> streamAllPaged(Pageable pageable);
+  @Query("SELECT d FROM Dish d WHERE d.startDay < ?1 and d.endDay > ?1")
+  List<Dish> streamAllPaged(int dayOfYear, Pageable pageable);
 
   List<Dish> getDishesByDishCategory(DishCategory category, Pageable pageable);
 }

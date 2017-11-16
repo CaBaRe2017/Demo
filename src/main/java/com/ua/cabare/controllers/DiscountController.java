@@ -79,7 +79,7 @@ public class DiscountController {
     return response;
   }
 
-  @RequestMapping(name = "/addpayment", method = RequestMethod.POST)
+  @RequestMapping(value = "/addpayment", method = RequestMethod.POST)
   public Response addPayment(@RequestParam(name = "discount_card") String discountCard,
       @RequestParam(name = "add_payment") Money payment) {
     try {
