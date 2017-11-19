@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/bill")
@@ -121,10 +122,15 @@ public class BillController {
     return response;
   }
 
-  @RequestMapping(value = "/opened")
-  public Response getOpened() {
+  @RequestMapping(value = "/opened", method = RequestMethod.POST)
+  public Response getOpened(@RequestParam Long employeeId) {
     try {
-      response.put(BILL_LIST, billService.getOpened());
+      securityService.authorizeEmployee(employeeId);
+      List<BillDto> openedBills = billService.getOpened()
+          .stream()
+          .map(item -> new BillDto(item))
+          .collect(Collectors.toList());
+      response.put(BILL_LIST, openedBills);
     } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
@@ -134,7 +140,12 @@ public class BillController {
   @RequestMapping(value = "/all/opened")
   public Response getOpenedAll() {
     try {
-      response.put(BILL_LIST, billService.getOpenedAll());
+
+      List<BillDto> openedBills = billService.getOpenedAll()
+          .stream()
+          .map(item -> new BillDto(item))
+          .collect(Collectors.toList());
+      response.put(BILL_LIST, openedBills);
     } catch (Exception ex) {
       response.put(STATUS, ex.getMessage());
     }
